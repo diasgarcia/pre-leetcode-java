@@ -34,17 +34,7 @@ pre-leetcode-java/
 ├── PROGRESSO.md           ← estado atual da mentoria
 ├── .gitignore
 ├── teoria/
-│   ├── 01_arrays_e_loops.md
-│   ├── 02_strings.md
-│   ├── 03_hashmap_e_hashset.md
-│   ├── 04_dois_ponteiros.md
-│   ├── 05_janela_deslizante.md
-│   ├── 06_pilha_e_fila.md
-│   ├── 07_busca_binaria.md
-│   ├── 08_recursao.md
-│   ├── 09_lista_encadeada.md
-│   ├── 10_arvores.md
-│   └── 11_grafos.md
+│   └── 01_arrays_e_loops.md
 └── src/main/java/exercicios/
     ├── arrays_e_loops/
     ├── strings/
@@ -117,18 +107,18 @@ java -cp target/classes exercicios.arrays_e_loops.Exercicio01
 
 ### Saída esperada
 
-```
-PASSOU
-PASSOU
-PASSOU
-PASSOU
-```
-
-Se algum teste falhar, você verá:
+A saída é uma tabela unificada com testes, resumo e complexidade ciclomática:
 
 ```
-FALHOU — esperado: 6, recebido: 0
+  Tipo    Status  Caso / Metodo                Obtido  Esperado  Detalhe
+  ------  ------  -------------------------  --------  --------  --------
+  TESTE   PASS    array comum                       6         6  -
+  TESTE   PASS    array vazio                       0         0  -
+  RESUMO  PASS    testes                          2/2       2/2  todos passaram
+  CCN     OK      somar                             2     <= 3  baixa
 ```
+
+Se algum teste falhar, a linha de CCN mostrará `SKIP`:
 
 ## Regras de estudo
 
@@ -158,6 +148,38 @@ O mentor seguirá três princípios:
 - **Começar com dicas pequenas e aumentar gradualmente.**
 - **Explicar o raciocínio, não apenas o código.**
 
+### Usando OpenCode
+
+Este repositório foi criado e é mantido com [OpenCode](https://opencode.ai),
+uma CLI que integra LLMs diretamente no terminal com contexto completo do
+projeto.
+
+A stack usada pelo autor:
+
+- **[OpenCode](https://opencode.ai)** — orquestrador que gerencia agentes,
+  comandos e contexto do projeto
+- **[DeepSeek V4 Pro](https://deepseek.com)** — modelo de linguagem usado
+  como mentor
+
+**Funciona com qualquer LLM.** O arquivo `AGENTS.md` é o contrato que
+qualquer modelo segue — seja via OpenCode, ChatGPT, Claude, Gemini ou
+Copilot. Basta fornecer o `AGENTS.md` como instrução de sistema e o
+`PROGRESSO.md` como contexto. Para melhores resultados, use modelos com
+suporte a raciocínio (reasoning).
+
+O projeto inclui agentes e comandos pré-configurados para OpenCode em
+`.opencode/`:
+
+| Comando | Ação |
+|---|---|
+| `/continuar` | Mostra o estado atual e o próximo passo |
+| `/revisar` | Fluxo completo: validar, revisar e criar próximo exercício |
+| `/validar` | Compila e executa os testes sem revisar nem avançar |
+| `/dica [nível]` | Fornece dica progressiva (nível 1 a 5) |
+| `/proximo` | Verifica aprovação e cria o próximo exercício |
+| `/progresso` | Exibe o estado da trilha sem alterar nada |
+| `/analisar` | Compila, executa e mostra a complexidade ciclomática |
+
 ## Tabela de progresso
 
 | Módulo | Status |
@@ -179,8 +201,9 @@ O mentor seguirá três princípios:
 - Nomes de classes, métodos, variáveis e pacotes em **português brasileiro**.
 - Um arquivo `.java` por exercício.
 - Classes nomeadas como `Exercicio01`, `Exercicio02`, etc.
-- Testes no próprio método `main` com as palavras `PASSOU` e `FALHOU`.
-- O método a ser implementado sempre contém `// TODO: implemente sua solução`.
+- Testes usam `util.Testar.resultado(...)` com tabela colorida unificada.
+- Todo `main` começa com `Testar.iniciar(...)` e termina com `Testar.finalizar()`.
+- O método a ser implementado contém `// TODO: implemente sua solução`.
 
 ## Complexidade de tempo e espaço
 
