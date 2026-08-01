@@ -6,9 +6,9 @@
 - Exercício atual: Exercício 02 — Contar números pares
 - Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio02.java
 - Método atual: contarPares
-- Status: aguardando implementação
-- Último exercício concluído: Exercício 01 — Somar todos os elementos
-- Próximo passo: implementar o método contarPares
+- Status: concluído
+- Último exercício concluído: Exercício 02 — Contar números pares
+- Próximo passo: criar Exercício 03
 
 ## Módulos
 
@@ -31,3 +31,4 @@
 | 2026-08-01 | Arrays e loops | 01 — Somar todos os elementos | Criado | Aguardando implementação do aluno |
 | 2026-08-01 | Arrays e loops | 01 — Somar todos os elementos | Concluído | CCN 2, O(n), solução limpa |
 | 2026-08-01 | Arrays e loops | 02 — Contar números pares | Criado | Aguardando implementação do aluno |
+| 2026-08-01 | Arrays e loops | 02 — Contar números pares | Concluído | CCN 3, O(n), loop + if |

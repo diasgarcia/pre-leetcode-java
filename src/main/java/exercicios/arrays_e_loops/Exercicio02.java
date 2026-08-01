@@ -15,7 +15,7 @@ package exercicios.arrays_e_loops;
  * [1, 2, 3, 4, 5, 6] -> 3
  * [2, 4, 6, 8]       -> 4
  * [1, 3, 5, 7]       -> 0
- * []                  -> 0
+ * []                 -> 0
  * [-2, -1, 0, 1, 2]  -> 3
  * }</pre>
  *
@@ -36,8 +36,15 @@ package exercicios.arrays_e_loops;
 public class Exercicio02 {
 
     public static int contarPares(int[] numeros) {
-        // TODO: implemente sua solução
-        return 0;
+
+        int pares = 0;
+        for (int numero : numeros) {
+            if (numero % 2 == 0) {
+                pares++;
+            }
+        }
+
+        return pares;
     }
 
     public static void main(String[] args) {
