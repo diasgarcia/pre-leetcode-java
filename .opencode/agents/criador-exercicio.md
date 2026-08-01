@@ -94,19 +94,7 @@ public class ExercicioXX {
     }
 
     public static void main(String[] args) {
-        testar(metodo(...), esperado);
-    }
-
-    private static void testar(tipo resultado, tipo esperado) {
-        if (resultado.equals(esperado)) {
-            System.out.println("PASSOU");
-        } else {
-            System.out.printf(
-                "FALHOU — esperado: %s, recebido: %s%n",
-                esperado,
-                resultado
-            );
-        }
+        util.Testar.resultado("descricao do caso", esperado, metodo(...));
     }
 }
 ```

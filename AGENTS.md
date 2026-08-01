@@ -189,20 +189,8 @@ public class ExercicioXX {
     }
 
     public static void main(String[] args) {
-        testar(metodo(...), esperado);
+        util.Testar.resultado("descricao do caso", esperado, metodo(...));
         // mais testes...
-    }
-
-    private static void testar(tipo resultado, tipo esperado) {
-        if (resultado.equals(esperado)) {
-            System.out.println("PASSOU");
-        } else {
-            System.out.printf(
-                "FALHOU — esperado: %s, recebido: %s%n",
-                esperado,
-                resultado
-            );
-        }
     }
 }
 ```
@@ -401,6 +389,7 @@ Comandos disponíveis:
 | `/dica [nível]` | Fornece dica progressiva (nível 1 a 5) |
 | `/proximo` | Verifica aprovação e cria o próximo exercício |
 | `/progresso` | Exibe o estado da trilha sem alterar nada |
+| `/analisar` | Executa Lizard e mostra complexidade ciclomática |
 
 Fluxo padrão:
 

@@ -38,23 +38,11 @@ public class Exercicio01 {
     }
 
     public static void main(String[] args) {
-        testar(somar(new int[]{1, 2, 3}), 6);
-        testar(somar(new int[]{10, -5, 2}), 7);
-        testar(somar(new int[]{}), 0);
-        testar(somar(new int[]{-2, -3}), -5);
-        testar(somar(new int[]{42}), 42);
-        testar(somar(new int[]{5, -5, 3, -3}), 0);
-    }
-
-    private static void testar(int resultado, int esperado) {
-        if (resultado == esperado) {
-            System.out.println("PASSOU");
-        } else {
-            System.out.printf(
-                "FALHOU — esperado: %d, recebido: %d%n",
-                esperado,
-                resultado
-            );
-        }
+        util.Testar.resultado("array comum",       6, somar(new int[]{1, 2, 3}));
+        util.Testar.resultado("com negativos",      7, somar(new int[]{10, -5, 2}));
+        util.Testar.resultado("array vazio",        0, somar(new int[]{}));
+        util.Testar.resultado("só negativos",      -5, somar(new int[]{-2, -3}));
+        util.Testar.resultado("um elemento",       42, somar(new int[]{42}));
+        util.Testar.resultado("soma zero (anula)",  0, somar(new int[]{5, -5, 3, -3}));
     }
 }
