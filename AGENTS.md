@@ -230,16 +230,61 @@ Não otimize prematuramente — foque em código claro e correto antes de pensar
 - Faça alterações pequenas e coerentes.
 - Registre o progresso em `PROGRESSO.md`.
 
-## Branches e commits
+## Política de branches e commits
 
-- **Branch `main`:** contém apenas módulos concluídos e aprovados.
-- **Branch `template`:** contém a estrutura inicial do projeto e o primeiro exercício (base para novos branches).
-- **Branches por módulo:** cada módulo tem sua própria branch (`modulo/01-arrays-e-loops`, `modulo/02-strings`, etc.). O trabalho do módulo acontece nela até que todos os exercícios estejam concluídos. Só então é feito merge para `main`.
-- **Padrão de commits:** use o formato `modulo(NN): descrição curta em português`.
-  - `template: cria estrutura inicial do projeto`
-  - `modulo(01): cria Exercicio01 — Somar todos os elementos`
-  - `modulo(01): revisao — Exercicio01 aprovado`
-  - `modulo(02): cria Exercicio01 — Contar vogais`
+### `template`
+
+- contém somente a base reutilizável do projeto
+- não recebe novos exercícios automaticamente
+- não acompanha `main`
+- não recebe merge depois de cada alteração
+- só pode ser alterada quando o aluno pedir explicitamente uma mudança no template
+
+### `main`
+
+- contém somente módulos concluídos e aprovados
+- não recebe trabalho em andamento
+- não recebe exercícios pendentes
+- só recebe merge de um módulo concluído mediante pedido explícito do aluno
+
+### `modulo/NN-nome`
+
+- contém todo o trabalho em andamento do módulo
+- recebe soluções, novos exercícios, progresso, teoria e ajustes relacionados
+- é a única branch permitida para commits normais durante o módulo
+
+### Regra obrigatória
+
+Antes de qualquer commit:
+
+```
+git branch --show-current
+```
+
+A branch deve corresponder ao módulo registrado em `PROGRESSO.md`.
+Se não corresponder, o commit deve ser bloqueado.
+
+### Proibições
+
+Nunca:
+
+- commitar simultaneamente em `main` e `template`
+- copiar automaticamente commits entre branches
+- fazer merge após cada exercício
+- fazer push sem pedido explícito
+- criar commit ao final de toda tarefa
+- usar `git add .`
+- trocar de branch sem autorização
+- reescrever histórico sem um pedido específico de manutenção Git
+
+### Padrão de commits
+
+Use o formato `modulo(NN): descrição curta em português`.
+
+Exemplos:
+- `modulo(01): cria Exercicio01 — Somar todos os elementos`
+- `modulo(01): revisao — Exercicio01 aprovado`
+- `modulo(02): cria Exercicio01 — Contar vogais`
 
 ## Arquivos de teoria
 
