@@ -94,7 +94,12 @@ public class ExercicioXX {
     }
 
     public static void main(String[] args) {
+        util.Testar.iniciar(ExercicioXX.class, "metodo");
+
         util.Testar.resultado("descricao do caso", esperado, metodo(...));
+        // mais testes...
+
+        util.Testar.finalizar();
     }
 }
 ```

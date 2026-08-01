@@ -189,8 +189,12 @@ public class ExercicioXX {
     }
 
     public static void main(String[] args) {
+        util.Testar.iniciar(ExercicioXX.class, "metodo");
+
         util.Testar.resultado("descricao do caso", esperado, metodo(...));
         // mais testes...
+
+        util.Testar.finalizar();
     }
 }
 ```
@@ -389,7 +393,7 @@ Comandos disponíveis:
 | `/dica [nível]` | Fornece dica progressiva (nível 1 a 5) |
 | `/proximo` | Verifica aprovação e cria o próximo exercício |
 | `/progresso` | Exibe o estado da trilha sem alterar nada |
-| `/analisar` | Executa Lizard e mostra complexidade ciclomática |
+| `/analisar` | Compila e executa o exercício — a análise ciclomática aparece na tabela unificada |
 
 Fluxo padrão:
 

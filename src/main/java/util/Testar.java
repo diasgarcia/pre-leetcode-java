@@ -5,24 +5,32 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * <h2>Utilitário de testes</h2>
+ * <h2>Utilitário de testes com análise ciclomática</h2>
  *
  * <p>
- * Métodos estáticos para verificar saídas de exercícios com saída tabulada
- * e colorida. A primeira chamada imprime o cabeçalho automaticamente e,
- * ao final da execução (quando o programa termina), exibe a análise de
- * complexidade ciclomática de cada método usando Lizard.
+ * Exibe testes, resumo e complexidade ciclomática em uma única tabela
+ * colorida. Use {@code Testar.iniciar(...)} antes dos testes e
+ * {@code Testar.finalizar()} depois do último.
  * </p>
  *
- * <p>
- * Use {@code Testar.resultado("nome do caso", esperado, obtido)}.
- * </p>
+ * <pre>{@code
+ * public static void main(String[] args) {
+ *     Testar.iniciar(Exercicio01.class, "somar");
+ *
+ *     Testar.resultado("array comum", 6, somar(new int[]{1, 2, 3}));
+ *     Testar.resultado("array vazio", 0, somar(new int[]{}));
+ *
+ *     Testar.finalizar();
+ * }
+ * }</pre>
  */
 public final class Testar {
 
@@ -33,144 +41,256 @@ public final class Testar {
     private static final String CIANO    = "\u001B[36m";
     private static final String RESET    = "\u001B[0m";
 
+    private static boolean iniciado = false;
+    private static boolean encerrado = false;
     private static boolean cabecalhoImpresso = false;
+    private static Class<?> classe;
+    private static String[] metodosRegistrados;
     private static int totalTestes = 0;
     private static int totalFalhas = 0;
-    private static String arquivoFonte = null;
-    private static boolean shutdownRegistrado = false;
 
     private Testar() {}
 
-    private static void registrarShutdown() {
-        if (shutdownRegistrado) return;
-        shutdownRegistrado = true;
+    // ---- API pública ----
 
-        StackTraceElement[] stack = Thread.currentThread().getStackTrace();
-        for (StackTraceElement e : stack) {
-            String nome = e.getClassName();
-            if (nome.startsWith("util.") || nome.startsWith("java.") || nome.startsWith("jdk.")) {
-                continue;
-            }
-            arquivoFonte = "src/main/java/" + nome.replace('.', '/') + ".java";
-            break;
-        }
-
-        Runtime.getRuntime().addShutdownHook(new Thread(Testar::exibirAnalise));
-    }
-
-    private static void imprimirCabecalho() {
-        if (cabecalhoImpresso) return;
-        cabecalhoImpresso = true;
-        registrarShutdown();
-
-        System.out.println();
-        System.out.printf("  %-6s  %-25s  %8s  %8s%n", "Status", "Caso", "Obtido", "Esperado");
-        System.out.printf("  %-6s  %-25s  %8s  %8s%n", "------", "----", "------", "--------");
-    }
-
-    private static void linha(boolean passou, String caso, String obtido, String esperado) {
-        imprimirCabecalho();
-
-        totalTestes++;
-        if (!passou) totalFalhas++;
-
-        String cor = passou ? VERDE : VERMELHO;
-        String texto = passou ? "PASS" : "FAIL";
-
-        System.out.print("  ");
-        System.out.print(cor);
-        System.out.printf("%-6s", texto);
-        System.out.print(RESET);
-        System.out.printf("  %-25s  %8s  ", caso, obtido);
-
-        if (passou) {
-            System.out.print(CINZA + "-" + RESET);
-        } else {
-            System.out.print(CINZA);
-            System.out.printf("%8s", esperado);
-            System.out.print(RESET);
-        }
-        System.out.println();
+    public static void iniciar(Class<?> c, String... metodos) {
+        classe = c;
+        metodosRegistrados = (metodos.length == 0) ? new String[0] : metodos.clone();
+        iniciado = true;
     }
 
     // ---- int ----
 
     public static void resultado(String caso, int esperado, int obtido) {
-        linha(esperado == obtido, caso, String.valueOf(obtido), String.valueOf(esperado));
+        verificarIniciado();
+        totalTestes++;
+        boolean passou = esperado == obtido;
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
     }
 
     // ---- long ----
 
     public static void resultado(String caso, long esperado, long obtido) {
-        linha(esperado == obtido, caso, String.valueOf(obtido), String.valueOf(esperado));
+        verificarIniciado();
+        totalTestes++;
+        boolean passou = esperado == obtido;
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
     }
 
     // ---- boolean ----
 
     public static void resultado(String caso, boolean esperado, boolean obtido) {
-        linha(esperado == obtido, caso, String.valueOf(obtido), String.valueOf(esperado));
+        verificarIniciado();
+        totalTestes++;
+        boolean passou = esperado == obtido;
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
     }
 
     // ---- double (com delta) ----
 
     public static void resultado(String caso, double esperado, double obtido, double delta) {
-        linha(Math.abs(esperado - obtido) <= delta, caso, String.valueOf(obtido), String.valueOf(esperado));
+        verificarIniciado();
+        totalTestes++;
+        boolean passou = Math.abs(esperado - obtido) <= delta;
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
     }
 
     // ---- String ----
 
     public static void resultado(String caso, String esperado, String obtido) {
+        verificarIniciado();
+        totalTestes++;
         boolean passou = esperado == null ? obtido == null : esperado.equals(obtido);
-        linha(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
     }
 
     // ---- int[] ----
 
     public static void resultado(String caso, int[] esperado, int[] obtido) {
-        linha(Arrays.equals(esperado, obtido), caso, Arrays.toString(obtido), Arrays.toString(esperado));
+        verificarIniciado();
+        totalTestes++;
+        boolean passou = Arrays.equals(esperado, obtido);
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, Arrays.toString(obtido), Arrays.toString(esperado));
     }
 
     // ---- Object genérico (fallback) ----
 
     public static void resultado(String caso, Object esperado, Object obtido) {
-        linha(Objects.equals(esperado, obtido), caso, String.valueOf(obtido), String.valueOf(esperado));
+        verificarIniciado();
+        totalTestes++;
+        boolean passou = Objects.equals(esperado, obtido);
+        if (!passou) totalFalhas++;
+        linhaTeste(passou, caso, String.valueOf(obtido), String.valueOf(esperado));
+    }
+
+    // ---- finalização ----
+
+    public static void finalizar() {
+        if (encerrado) return;
+        encerrado = true;
+        if (!iniciado) return;
+
+        if (!cabecalhoImpresso) imprimirCabecalho();
+
+        String sep = CINZA
+                + "  ------  ------  -------------------------  --------  --------  ------------"
+                + RESET;
+        System.out.println(sep);
+
+        boolean todosPassaram = totalFalhas == 0;
+        String resumoObtido = (totalTestes - totalFalhas) + "/" + totalTestes;
+        String resumoEsperado = totalTestes + "/" + totalTestes;
+        String resumoDetalhe = todosPassaram ? "todos passaram" : totalFalhas + " falharam";
+
+        imprimirLinha("RESUMO", todosPassaram ? "PASS" : "FAIL", todosPassaram,
+                "testes", resumoObtido, resumoEsperado, resumoDetalhe,
+                todosPassaram ? VERDE : VERMELHO);
+
+        if (metodosRegistrados.length == 0) return;
+
+        if (!todosPassaram) {
+            for (String metodo : metodosRegistrados) {
+                imprimirLinha("CCN", "SKIP", false,
+                        metodo, "-", "-", "testes falharam",
+                        CINZA);
+            }
+            return;
+        }
+
+        Map<String, Integer> ccnPorMetodo = analisarLizard();
+
+        for (String metodo : metodosRegistrados) {
+            if (ccnPorMetodo == null) {
+                imprimirLinha("CCN", "INDISP", false,
+                        metodo, "-", "-", "instale o Lizard: py -m pip install lizard",
+                        AMARELO);
+                continue;
+            }
+
+            Integer ccn = ccnPorMetodo.get(metodo);
+            if (ccn == null) {
+                imprimirLinha("CCN", "ERRO", false,
+                        metodo, "-", "-", "metodo nao encontrado",
+                        VERMELHO);
+                continue;
+            }
+
+            int valor = ccn;
+            String classificacao;
+            if (valor <= 4) classificacao = "baixa";
+            else if (valor <= 7) classificacao = "moderada";
+            else if (valor <= 10) classificacao = "alta";
+            else classificacao = "muito alta";
+
+            boolean ccnOk = valor <= 10;
+            String statusCCN = ccnOk ? "OK" : "ALERTA";
+            String corCCN = ccnOk ? VERDE : AMARELO;
+
+            imprimirLinha("CCN", statusCCN, ccnOk,
+                    metodo,
+                    String.valueOf(valor),
+                    "<= 10",
+                    classificacao,
+                    corCCN);
+        }
+    }
+
+    // ---- impressão ----
+
+    private static void verificarIniciado() {
+        if (!iniciado) {
+            throw new IllegalStateException("Testar.iniciar(Class<?>, String...) deve ser chamado antes de Testar.resultado(...)");
+        }
+    }
+
+    private static void imprimirCabecalho() {
+        if (cabecalhoImpresso) return;
+        cabecalhoImpresso = true;
+
+        System.out.println();
+        System.out.printf("  %-6s  %-6s  %-25s  %8s  %8s  %s%n",
+                "Tipo", "Status", "Caso / Metodo", "Obtido", "Esperado", "Detalhe");
+        System.out.printf("  %-6s  %-6s  %-25s  %8s  %8s  %s%n",
+                "------", "------", "-------------------------", "--------", "--------", "--------");
+    }
+
+    private static void imprimirLinha(String tipo, String status, boolean statusOk,
+                                       String nome, String obtido,
+                                       String esperado, String detalhe,
+                                       String corStatus) {
+        imprimirCabecalho();
+
+        System.out.print("  ");
+        System.out.printf("%-6s", tipo);
+        System.out.print("  ");
+
+        System.out.print(corStatus);
+        System.out.printf("%-6s", status);
+        System.out.print(RESET);
+        System.out.print("  ");
+
+        System.out.printf("%-25s  ", nome);
+
+        if ("-".equals(obtido)) {
+            System.out.print(CINZA);
+            System.out.printf("%8s", obtido);
+            System.out.print(RESET);
+        } else {
+            System.out.printf("%8s", obtido);
+        }
+        System.out.print("  ");
+
+        System.out.print(CINZA);
+        System.out.printf("%8s", esperado);
+        System.out.print(RESET);
+        System.out.print("  ");
+
+        if ("-".equals(detalhe)) {
+            System.out.println(CINZA + detalhe + RESET);
+        } else {
+            System.out.println(detalhe);
+        }
+    }
+
+    private static void linhaTeste(boolean passou, String caso, String obtido, String esperado) {
+        String status = passou ? "PASS" : "FAIL";
+        String cor = passou ? VERDE : VERMELHO;
+        String detalhe = passou ? "-" : "valores diferentes";
+
+        imprimirLinha("TESTE", status, passou, caso, obtido, esperado, detalhe, cor);
     }
 
     // ---- análise ciclomática ----
 
-    private static void exibirAnalise() {
-        if (totalTestes == 0 || arquivoFonte == null) return;
+    private static Map<String, Integer> analisarLizard() {
+        if (classe == null) return null;
 
-        File fonte = new File(arquivoFonte);
-        if (!fonte.exists()) return;
+        File fonte = resolverArquivoFonte();
+        if (fonte == null || !fonte.exists()) return null;
 
-        System.out.println();
-        System.out.printf("  %-20s %s%n", "Complexidade ciclomatica", CIANO + fonte.getName() + RESET);
+        List<String> saida = executarLizard(fonte);
+        if (saida == null) return null;
 
-        List<String> saidaLizard = executarLizard(fonte);
-        if (saidaLizard == null) {
-            return;
-        }
+        return extrairCCN(saida);
+    }
 
-        List<String[]> funcoes = parseLizard(saidaLizard);
-        if (funcoes.isEmpty()) return;
-
-        System.out.printf("  %n  %-30s %5s%n", "Metodo", "CCN");
-        System.out.printf("  %-30s %5s%n", "------", "---");
-
-        for (String[] f : funcoes) {
-            String nome = f[0];
-            int ccn = Integer.parseInt(f[1]);
-            String cor = ccn <= 5 ? VERDE : ccn <= 10 ? AMARELO : VERMELHO;
-            String barra = "";
-            for (int i = 0; i < ccn; i++) barra += "|";
-            System.out.printf("  %-30s %s%2d %s%s%n", nome, cor, ccn, CINZA + barra, RESET);
-        }
+    private static File resolverArquivoFonte() {
+        String pacote = classe.getPackageName();
+        String nome = classe.getSimpleName();
+        String caminho = "src/main/java/" + pacote.replace('.', '/') + "/" + nome + ".java";
+        File f = new File(caminho);
+        return f.exists() ? f : null;
     }
 
     private static List<String> executarLizard(File fonte) {
         try {
-            ProcessBuilder pb = new ProcessBuilder("lizard", "-C", "10", fonte.getAbsolutePath());
+            ProcessBuilder pb = new ProcessBuilder("lizard", fonte.getAbsolutePath());
             pb.redirectErrorStream(true);
             Process p = pb.start();
 
@@ -188,10 +308,10 @@ public final class Testar {
         }
     }
 
-    private static final Pattern PADRAO_FUNCAO = Pattern.compile("\\s*(\\d+)\\s+(\\d+)");
+    private static final Pattern PADRAO_LINHA = Pattern.compile("\\s*(\\d+)\\s+(\\d+)");
 
-    private static List<String[]> parseLizard(List<String> saida) {
-        List<String[]> funcoes = new ArrayList<>();
+    private static Map<String, Integer> extrairCCN(List<String> saida) {
+        Map<String, Integer> todos = new LinkedHashMap<>();
         boolean naTabela = false;
 
         for (String linha : saida) {
@@ -204,17 +324,26 @@ public final class Testar {
                 continue;
             }
             if (naTabela) {
-                Matcher m = PADRAO_FUNCAO.matcher(linha);
+                Matcher m = PADRAO_LINHA.matcher(linha);
                 if (m.find()) {
                     String[] partes = linha.trim().split("\\s+");
                     if (partes.length >= 5) {
                         String loc = partes[partes.length - 1];
-                        String nome = loc.substring(0, loc.indexOf('@'));
-                        funcoes.add(new String[]{nome, partes[1]});
+                        String nomeCompleto = loc.substring(0, loc.indexOf('@'));
+                        int doisPontos = nomeCompleto.lastIndexOf("::");
+                        if (doisPontos >= 0) {
+                            String nomeMetodo = nomeCompleto.substring(doisPontos + 2);
+                            todos.put(nomeMetodo, Integer.parseInt(partes[1]));
+                        }
                     }
                 }
             }
         }
-        return funcoes;
+
+        Map<String, Integer> resultado = new LinkedHashMap<>();
+        for (String registrado : metodosRegistrados) {
+            resultado.put(registrado, todos.get(registrado));
+        }
+        return resultado;
     }
 }

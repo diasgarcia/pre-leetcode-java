@@ -46,15 +46,41 @@ Para Windows PowerShell, use o caminho com `;` e adapte conforme necessário:
 mvn clean compile -q; if ($?) { java -cp target/classes exercicios.arrays_e_loops.Exercicio01 }
 ```
 
-Não compile o projeto inteiro se não for necessário. Mas na prática, o Maven compila o necessário.
-
 ---
 
 ## Captura e relatório
 
-Execute o método `main` e capture a saída.
+A saída do programa contém uma tabela unificada com três tipos de linha:
 
-### Quando compila e todos os testes passam:
+| Tipo | Significado |
+|---|---|
+| `TESTE` | Cada caso de teste individual |
+| `RESUMO` | Contagem final de aprovados/reprovados |
+| `CCN` | Complexidade ciclomática do(s) método(s) da solução |
+
+### Critérios de aprovação
+
+- **Aprovado:** quando `RESUMO` tem `Status = PASS`.
+- **Reprovado:** quando `RESUMO` tem `Status = FAIL`.
+
+### Linhas CCN
+
+As linhas `CCN` são informativas:
+
+| CCN Status | Significado | Reprova? |
+|---|---|---|
+| `OK` | CCN dentro do limite (≤ 10) | Não |
+| `ALERTA` | CCN acima de 10 | **Não** |
+| `SKIP` | Análise ignorada (testes falharam) | **(já reprovado)** |
+| `INDISP` | Lizard não está instalado | Não |
+| `ERRO` | Método não encontrado no arquivo | Não |
+
+**CCN ALERTA não reprova automaticamente.** É apenas um aviso.
+**CCN INDISPONIVEL não reprova automaticamente.** O aluno pode instalar depois.
+
+### Relatório padronizado
+
+#### Quando compila e todos os testes passam:
 
 ```
 COMPILACAO: APROVADA
@@ -66,9 +92,13 @@ Classe executada:
 Resultado:
 - X testes passaram
 - 0 testes falharam
+
+Complexidade:
+- Listar cada linha CCN e sua classificação
+- Se CCN ALERTA: mencionar que é um aviso, não reprovação
 ```
 
-### Quando há teste falhando:
+#### Quando há teste falhando:
 
 ```
 COMPILACAO: APROVADA
@@ -82,7 +112,7 @@ Falhas:
 - esperado: ... | recebido: ...
 ```
 
-### Quando não compila:
+#### Quando não compila:
 
 ```
 COMPILACAO: REPROVADA
