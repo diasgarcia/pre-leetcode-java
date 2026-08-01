@@ -40,12 +40,12 @@ public class Exercicio01 {
     public static void main(String[] args) {
         util.Testar.iniciar(Exercicio01.class, "somar");
 
-        util.Testar.resultado("array comum",       6, somar(new int[]{1, 2, 3}));
-        util.Testar.resultado("com negativos",      7, somar(new int[]{10, -5, 2}));
-        util.Testar.resultado("array vazio",        0, somar(new int[]{}));
-        util.Testar.resultado("so negativos",      -5, somar(new int[]{-2, -3}));
-        util.Testar.resultado("um elemento",       42, somar(new int[]{42}));
-        util.Testar.resultado("soma zero (anula)",  0, somar(new int[]{5, -5, 3, -3}));
+        util.Testar.resultado("array comum", 6, somar(new int[]{1, 2, 3}));
+        util.Testar.resultado("com negativos", 7, somar(new int[]{10, -5, 2}));
+        util.Testar.resultado("array vazio", 0, somar(new int[]{}));
+        util.Testar.resultado("so negativos", -5, somar(new int[]{-2, -3}));
+        util.Testar.resultado("um elemento", 42, somar(new int[]{42}));
+        util.Testar.resultado("soma zero (anula)", 0, somar(new int[]{5, -5, 3, -3}));
 
         util.Testar.finalizar();
     }

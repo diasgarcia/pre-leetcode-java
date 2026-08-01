@@ -51,6 +51,16 @@ public final class Testar {
 
     private Testar() {}
 
+    static void reset() {
+        iniciado = false;
+        encerrado = false;
+        cabecalhoImpresso = false;
+        classe = null;
+        metodosRegistrados = null;
+        totalTestes = 0;
+        totalFalhas = 0;
+    }
+
     // ---- API pública ----
 
     public static void iniciar(Class<?> c, String... metodos) {
