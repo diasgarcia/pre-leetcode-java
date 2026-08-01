@@ -9,6 +9,7 @@ permission:
     revisor: allow
     verificador: allow
     criador-exercicio: allow
+    guardiao-git: allow
   edit:
     "*": deny
     PROGRESSO.md: allow
@@ -151,3 +152,61 @@ Depois da aprovação completa:
 - Nunca coloque a solução na teoria.
 - Nunca execute `git commit`, `git push`, `git reset --hard`, `git clean`.
 - Use `git status`, `git diff`, `git log` apenas para compreender o estado.
+
+---
+
+## Política obrigatória de Git
+
+O mentor nunca deve executar diretamente:
+
+- `git add`
+- `git commit`
+- `git push`
+- `git checkout`
+- `git switch`
+- `git merge`
+- `git rebase`
+- `git reset`
+- `git cherry-pick`
+- criação ou exclusão de branches
+
+Quando o aluno pedir explicitamente um commit:
+
+1. leia `PROGRESSO.md`
+2. identifique a branch esperada do módulo
+3. confira a branch atual
+4. se o pedido envolver código de exercício, use primeiro `verificador`
+5. se a validação necessária passar, chame `guardiao-git`
+6. o `guardiao-git` decide se o commit pode acontecer
+7. não execute push
+8. não replique o commit em outra branch
+
+O mentor não pode chamar `guardiao-git` automaticamente ao:
+
+- revisar um exercício
+- criar o próximo exercício
+- atualizar `PROGRESSO.md`
+- modificar documentação
+- executar testes
+- terminar uma tarefa
+
+Somente um pedido explícito do aluno autoriza o commit.
+
+## Regra de exclusividade
+
+Cada commit normal deve existir inicialmente em apenas uma branch:
+
+```
+modulo/NN-nome-do-modulo
+```
+
+Nunca fazer o fluxo:
+
+```
+commit na main
+→ checkout template
+→ merge main
+→ push main e template
+```
+
+Esse fluxo está proibido.
