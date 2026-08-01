@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * <pre>{@code
  * public static void main(String[] args) {
- *     Testar.iniciar(Exercicio01.class, "somar");
+ *     Testar.iniciar(Exercicio01.class, 3, "somar");
  *
  *     Testar.resultado("array comum", 6, somar(new int[]{1, 2, 3}));
  *     Testar.resultado("array vazio", 0, somar(new int[]{}));
@@ -49,6 +49,8 @@ public final class Testar {
     private static int totalTestes = 0;
     private static int totalFalhas = 0;
 
+    private static int limiteCCN = 10;
+
     private Testar() {}
 
     static void reset() {
@@ -57,16 +59,22 @@ public final class Testar {
         cabecalhoImpresso = false;
         classe = null;
         metodosRegistrados = null;
+        limiteCCN = 10;
         totalTestes = 0;
         totalFalhas = 0;
     }
 
     // ---- API pública ----
 
-    public static void iniciar(Class<?> c, String... metodos) {
+    public static void iniciar(Class<?> c, int limiteCiclomatico, String... metodos) {
         classe = c;
+        limiteCCN = limiteCiclomatico;
         metodosRegistrados = (metodos.length == 0) ? new String[0] : metodos.clone();
         iniciado = true;
+    }
+
+    public static void iniciar(Class<?> c, String... metodos) {
+        iniciar(c, 10, metodos);
     }
 
     // ---- int ----
@@ -192,20 +200,21 @@ public final class Testar {
             }
 
             int valor = ccn;
+            double proporcao = (double) valor / limiteCCN;
             String classificacao;
-            if (valor <= 4) classificacao = "baixa";
-            else if (valor <= 7) classificacao = "moderada";
-            else if (valor <= 10) classificacao = "alta";
-            else classificacao = "muito alta";
+            if (proporcao <= 0.4) classificacao = "baixa";
+            else if (proporcao <= 0.7) classificacao = "moderada";
+            else classificacao = "alta";
 
-            boolean ccnOk = valor <= 10;
+            boolean ccnOk = valor <= limiteCCN;
             String statusCCN = ccnOk ? "OK" : "ALERTA";
             String corCCN = ccnOk ? VERDE : AMARELO;
+            String limiteStr = String.valueOf(limiteCCN);
 
             imprimirLinha("CCN", statusCCN, ccnOk,
                     metodo,
                     String.valueOf(valor),
-                    "<= 10",
+                    "<= " + limiteStr,
                     classificacao,
                     corCCN);
         }

@@ -54,6 +54,7 @@ Você cria somente o próximo exercício permitido pela trilha. Você NUNCA impl
 - **Compila sem a solução.**
 - **Não contém a resposta.**
 - **Não contém pseudocódigo revelador.**
+- **Defina um limite ciclomático que faça sentido para o problema** (veja abaixo).
 
 ### Formato obrigatório do Javadoc
 
@@ -94,7 +95,7 @@ public class ExercicioXX {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(ExercicioXX.class, "metodo");
+        util.Testar.iniciar(ExercicioXX.class, 5, "metodo");
 
         util.Testar.resultado("descricao do caso", esperado, metodo(...));
         // mais testes...
@@ -115,6 +116,40 @@ Regras de formatação:
 - Nunca use Markdown (`#`, `-`, `` ` ``, ```` ``` ````) dentro do Javadoc.
 - Não use `<br>` repetidamente para simular quebras de linha.
 - Alinhe exemplos dentro de `<pre>{@code ...}</pre>` quando melhorar a leitura.
+
+---
+
+## Limite ciclomático
+
+Todo exercício deve definir um limite de CCN no `Testar.iniciar(...)`.
+
+O limite deve ser o CCN da solução esperada **+ 1 ou 2 de margem**.
+
+Referência rápida:
+
+| Estrutura | CCN acrescenta |
+|---|---|
+| Entrada do método | 1 |
+| `if` / `else if` | +1 cada |
+| `for` / `while` / `do-while` | +1 cada |
+| `&&` / `\|\|` | +1 cada |
+| `case` (sem fall-through) | +1 cada |
+| `?:` (ternário) | +1 |
+
+Exemplos:
+
+| Solução esperada | CCN base | Limite sugerido |
+|---|---|---|
+| Retorno simples | 1 | 2 |
+| Um loop | 2 | 3 |
+| Loop + um `if` | 3 | 4–5 |
+| Dois loops aninhados | 3 | 4–5 |
+| Loop + dois `if` | 4 | 5–6 |
+| Múltiplos `if/else` (3 ramos) | 4 | 5–6 |
+
+**Nunca use o valor padrão 10 sem pensar.** Sempre calcule o CCN da solução ideal e adicione margem pequena.
+
+O valor deve ser realista: se a solução mais limpa tem CCN 3, não coloque limite 8.
 
 ---
 

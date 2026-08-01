@@ -189,7 +189,7 @@ public class ExercicioXX {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(ExercicioXX.class, "metodo");
+        util.Testar.iniciar(ExercicioXX.class, 5, "metodo");
 
         util.Testar.resultado("descricao do caso", esperado, metodo(...));
         // mais testes...
