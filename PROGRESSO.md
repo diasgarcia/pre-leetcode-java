@@ -12,7 +12,7 @@
 
 ## Módulos
 
-- [x] 1 — Arrays e loops
+- [ ] 1 — Arrays e loops
 - [ ] 2 — Strings
 - [ ] 3 — HashMap e HashSet
 - [ ] 4 — Dois ponteiros
