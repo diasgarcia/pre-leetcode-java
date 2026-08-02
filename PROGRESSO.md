@@ -12,7 +12,7 @@
 
 ## Módulos
 
-- [ ] 1 — Arrays e loops
+- [x] 1 — Arrays e loops
 - [ ] 2 — Strings
 - [ ] 3 — HashMap e HashSet
 - [ ] 4 — Dois ponteiros
@@ -47,3 +47,4 @@
 | 2026-08-01 | Arrays e loops | 09 — Verificar se o array está ordenado | Criado | Aguardando implementação do aluno |
 | 2026-08-01 | Arrays e loops | 09 — Verificar se o array está ordenado | Concluído | CCN 3, O(n), early return |
 | 2026-08-02 | Arrays e loops | 10 — Encontrar dois números com soma-alvo | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Arrays e loops | 10 — Encontrar dois números com soma-alvo | Concluído | CCN 4, O(n²), Two Sum |
