@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 02 — Inverter uma string
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio02.java
-- Método atual: inverter
+- Exercício atual: Exercício 03 — Verificar palíndromo
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio03.java
+- Método atual: ehPalindromo
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 01 — Contar vogais
-- Próximo passo: implementar o método inverter para retornar a string invertida usando StringBuilder
+- Último exercício concluído: Exercício 02 — Inverter uma string
+- Próximo passo: implementar o método ehPalindromo para verificar se uma string é palíndromo
 
 ## Módulos
 
@@ -41,3 +41,5 @@
 | 2026-08-02 | Strings | 01 — Contar vogais | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 01 — Contar vogais | Concluído | CCN 3, O(n), indexOf |
 | 2026-08-02 | Strings | 02 — Inverter uma string | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 02 — Inverter uma string | Concluído | CCN 2, O(n), StringBuilder |
+| 2026-08-02 | Strings | 03 — Verificar palíndromo | Criado | Aguardando implementação do aluno |
