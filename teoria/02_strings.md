@@ -325,17 +325,20 @@ A diferença principal é que arrays são mutáveis (você pode alterar `array[i
 ## Lista planejada de exercícios
 
 | # | Título | Dificuldade | Foco |
-|---|---|---|---|
-| 01 | Contar vogais | Fundamento | Loop em string, `charAt()`, `toLowerCase()` |
+|---|---|---|---|---|
+| 01 | Contar vogais | Fundamento | `charAt()`, `toLowerCase()` |
 | 02 | Inverter uma string | Fundamento | `StringBuilder`, percorrer de trás para frente |
-| 03 | Verificar palíndromo | Fácil | Comparar índices, dois ponteiros |
+| 03 | Verificar palíndromo | Fácil | Dois ponteiros, `equals()` |
 | 04 | Contar ocorrências de um caractere | Fácil | Loop + condição, parâmetro adicional |
 | 05 | Encontrar primeira ocorrência | Fácil | `indexOf()` manual, busca linear |
 | 06 | Extrair substring entre índices | Fácil | `substring()`, validação de limites |
-| 07 | Substituir caractere | Fácil intermediário | Construir nova string condicionalmente |
-| 08 | Contar palavras | Fácil intermediário | Identificar transições espaço/palavra |
-| 09 | Remover caracteres duplicados consecutivos | Desafio do módulo | `StringBuilder`, comparar com anterior |
-| 10 | Maior prefixo comum | Estilo LeetCode | Índices, comparação caractere a caractere |
+| 07 | Substituir caractere | Fácil | Construir nova string condicionalmente |
+| 08 | Contar palavras | Intermediário | Identificar transições espaço/palavra |
+| 09 | Remover caracteres duplicados consecutivos | Intermediário | `StringBuilder`, comparar com anterior |
+| 10 | Maior prefixo comum | Intermediário | Índices, comparação caractere a caractere |
+| 11 | Frequência de caracteres | Intermediário | `toCharArray()`, array de contagem (prepara HashMap) |
+| 12 | `trim()` manual | Intermediário | Identificar índices de início e fim sem espaços |
+| 13 | Valid Palindrome (LeetCode 125) | Desafio | Dois ponteiros, ignora não-alfanumérico, case-insensitive |
 
 ---
 
