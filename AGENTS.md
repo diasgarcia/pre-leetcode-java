@@ -448,3 +448,40 @@ Fluxo padrão:
 4. O projeto volta a aguardar o aluno.
 
 Os agentes do OpenCode herdam as regras deste `AGENTS.md`. As configurações específicas de permissão e comportamento estão nos arquivos `.md` dentro de `.opencode/`.
+
+---
+
+## Integração com Codex
+
+O projeto também possui uma configuração nativa para Codex, mantendo o mesmo fluxo pedagógico do OpenCode.
+
+### Skill do repositório
+
+A Skill `.agents/skills/pre-leetcode-mentor/SKILL.md` é descoberta automaticamente pelo Codex quando ele trabalha neste repositório. Ela reconhece pedidos em linguagem natural e os fluxos equivalentes a:
+
+| Intenção | Ação |
+|---|---|
+| `continuar` | Mostra o estado atual e o próximo passo |
+| `revisar` | Valida, revisa e cria o próximo exercício quando aprovado |
+| `validar` | Compila e executa os testes sem avançar |
+| `dica [nível]` | Fornece uma dica progressiva |
+| `proximo` | Libera somente o próximo exercício permitido |
+| `progresso` | Exibe o estado da trilha sem alterar arquivos |
+| `analisar` | Executa testes e interpreta a complexidade ciclomática |
+| `commit` | Valida a branch e cria no máximo um commit autorizado |
+
+No Codex, invoque a Skill explicitamente com `$pre-leetcode-mentor` ou faça o pedido em linguagem natural. Os arquivos detalhados de cada fluxo ficam em `.agents/skills/pre-leetcode-mentor/references/`.
+
+### Agentes personalizados
+
+Os agentes nativos ficam em `.codex/agents/`:
+
+- `mentor`: coordena o fluxo completo;
+- `verificador`: compila e executa sem alterar fontes;
+- `revisor`: revisa a solução em modo somente leitura;
+- `criador_exercicio`: cria exatamente um próximo exercício sem implementar a solução;
+- `guardiao_git`: cria um único commit somente após pedido explícito.
+
+O Codex pode delegar a esses agentes quando a Skill ou este `AGENTS.md` solicitar. Fluxos dependentes são sequenciais: verificação, revisão e somente então criação do próximo exercício.
+
+`AGENTS.md` continua sendo a fonte compartilhada de regras. As pastas `.opencode/` e as configurações do Codex apenas adaptam a orquestração para cada ferramenta; em caso de conflito, prevalecem as regras deste arquivo e a solicitação explícita mais recente do aluno.
