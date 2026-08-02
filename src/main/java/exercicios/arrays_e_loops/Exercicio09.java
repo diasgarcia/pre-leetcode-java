@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 09 — Verificar se o array está ordenado</h2>
  *
@@ -57,20 +59,20 @@ public class Exercicio09 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio09.class, 4, "estaOrdenado");
+        iniciar(Exercicio09.class, 4, "estaOrdenado");
 
-        util.Testar.resultado("ordenado crescente", true, estaOrdenado(new int[]{1, 2, 3, 4, 5}));
-        util.Testar.resultado("nao ordenado", false, estaOrdenado(new int[]{3, 1, 4, 1, 5}));
-        util.Testar.resultado("array vazio", true, estaOrdenado(new int[]{}));
-        util.Testar.resultado("um elemento", true, estaOrdenado(new int[]{42}));
-        util.Testar.resultado("com duplicados (nao-decrescente)", true, estaOrdenado(new int[]{1, 2, 2, 3, 4}));
-        util.Testar.resultado("decrescente", false, estaOrdenado(new int[]{5, 4, 3, 2, 1}));
-        util.Testar.resultado("todos iguais", true, estaOrdenado(new int[]{7, 7, 7, 7}));
-        util.Testar.resultado("ordenado ate o final", false, estaOrdenado(new int[]{1, 2, 3, 5, 4}));
-        util.Testar.resultado("negativos ordenados", true, estaOrdenado(new int[]{-5, -2, 0, 3}));
-        util.Testar.resultado("dois elementos ordenados", true, estaOrdenado(new int[]{10, 20}));
-        util.Testar.resultado("dois elementos nao ordenados", false, estaOrdenado(new int[]{20, 10}));
+        resultado("ordenado crescente", true, estaOrdenado(new int[]{1, 2, 3, 4, 5}));
+        resultado("nao ordenado", false, estaOrdenado(new int[]{3, 1, 4, 1, 5}));
+        resultado("array vazio", true, estaOrdenado(new int[]{}));
+        resultado("um elemento", true, estaOrdenado(new int[]{42}));
+        resultado("com duplicados (nao-decrescente)", true, estaOrdenado(new int[]{1, 2, 2, 3, 4}));
+        resultado("decrescente", false, estaOrdenado(new int[]{5, 4, 3, 2, 1}));
+        resultado("todos iguais", true, estaOrdenado(new int[]{7, 7, 7, 7}));
+        resultado("ordenado ate o final", false, estaOrdenado(new int[]{1, 2, 3, 5, 4}));
+        resultado("negativos ordenados", true, estaOrdenado(new int[]{-5, -2, 0, 3}));
+        resultado("dois elementos ordenados", true, estaOrdenado(new int[]{10, 20}));
+        resultado("dois elementos nao ordenados", false, estaOrdenado(new int[]{20, 10}));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

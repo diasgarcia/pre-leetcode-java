@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 06 — Retornar o índice de um valor</h2>
  *
@@ -51,18 +53,18 @@ public class Exercicio06 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio06.class, 4, "indiceDe");
+        iniciar(Exercicio06.class, 4, "indiceDe");
 
-        util.Testar.resultado("valor no meio", 2, indiceDe(new int[]{1, 2, 3, 4, 5}, 3));
-        util.Testar.resultado("valor nao existe", -1, indiceDe(new int[]{1, 2, 3, 4, 5}, 7));
-        util.Testar.resultado("array vazio", -1, indiceDe(new int[]{}, 1));
-        util.Testar.resultado("primeiro elemento", 0, indiceDe(new int[]{10, 20, 30}, 10));
-        util.Testar.resultado("ultimo elemento", 2, indiceDe(new int[]{10, 20, 30}, 30));
-        util.Testar.resultado("com negativos", 0, indiceDe(new int[]{-5, 0, 5}, -5));
-        util.Testar.resultado("primeira ocorrencia (repetido)", 0, indiceDe(new int[]{5, 2, 5, 8}, 5));
-        util.Testar.resultado("um elemento (existe)", 0, indiceDe(new int[]{42}, 42));
-        util.Testar.resultado("um elemento (nao existe)", -1, indiceDe(new int[]{42}, 7));
+        resultado("valor no meio", 2, indiceDe(new int[]{1, 2, 3, 4, 5}, 3));
+        resultado("valor nao existe", -1, indiceDe(new int[]{1, 2, 3, 4, 5}, 7));
+        resultado("array vazio", -1, indiceDe(new int[]{}, 1));
+        resultado("primeiro elemento", 0, indiceDe(new int[]{10, 20, 30}, 10));
+        resultado("ultimo elemento", 2, indiceDe(new int[]{10, 20, 30}, 30));
+        resultado("com negativos", 0, indiceDe(new int[]{-5, 0, 5}, -5));
+        resultado("primeira ocorrencia (repetido)", 0, indiceDe(new int[]{5, 2, 5, 8}, 5));
+        resultado("um elemento (existe)", 0, indiceDe(new int[]{42}, 42));
+        resultado("um elemento (nao existe)", -1, indiceDe(new int[]{42}, 7));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

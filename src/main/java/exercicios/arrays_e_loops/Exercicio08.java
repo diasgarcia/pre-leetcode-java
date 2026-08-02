@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 08 — Contar ocorrências de um número</h2>
  *
@@ -50,18 +52,18 @@ public class Exercicio08 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio08.class, 5, "contarOcorrencias");
+        iniciar(Exercicio08.class, 5, "contarOcorrencias");
 
-        util.Testar.resultado("array comum", 3, contarOcorrencias(new int[]{1, 2, 3, 2, 4, 2}, 2));
-        util.Testar.resultado("valor nao existe", 0, contarOcorrencias(new int[]{1, 2, 3, 4, 5}, 7));
-        util.Testar.resultado("array vazio", 0, contarOcorrencias(new int[]{}, 1));
-        util.Testar.resultado("todos iguais", 4, contarOcorrencias(new int[]{5, 5, 5, 5}, 5));
-        util.Testar.resultado("com negativos", 2, contarOcorrencias(new int[]{-2, -1, 0, -2, 3}, -2));
-        util.Testar.resultado("um elemento (existe)", 1, contarOcorrencias(new int[]{42}, 42));
-        util.Testar.resultado("um elemento (nao existe)", 0, contarOcorrencias(new int[]{42}, 7));
-        util.Testar.resultado("nenhuma ocorrencia", 0, contarOcorrencias(new int[]{10, 20, 30}, 99));
-        util.Testar.resultado("zero repetido", 3, contarOcorrencias(new int[]{0, 1, 0, 2, 0}, 0));
+        resultado("array comum", 3, contarOcorrencias(new int[]{1, 2, 3, 2, 4, 2}, 2));
+        resultado("valor nao existe", 0, contarOcorrencias(new int[]{1, 2, 3, 4, 5}, 7));
+        resultado("array vazio", 0, contarOcorrencias(new int[]{}, 1));
+        resultado("todos iguais", 4, contarOcorrencias(new int[]{5, 5, 5, 5}, 5));
+        resultado("com negativos", 2, contarOcorrencias(new int[]{-2, -1, 0, -2, 3}, -2));
+        resultado("um elemento (existe)", 1, contarOcorrencias(new int[]{42}, 42));
+        resultado("um elemento (nao existe)", 0, contarOcorrencias(new int[]{42}, 7));
+        resultado("nenhuma ocorrencia", 0, contarOcorrencias(new int[]{10, 20, 30}, 99));
+        resultado("zero repetido", 3, contarOcorrencias(new int[]{0, 1, 0, 2, 0}, 0));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

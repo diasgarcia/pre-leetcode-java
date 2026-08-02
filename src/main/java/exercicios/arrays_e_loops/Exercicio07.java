@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 07 — Inverter um array</h2>
  *
@@ -50,16 +52,16 @@ public class Exercicio07 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio07.class, 3, "inverter");
+        iniciar(Exercicio07.class, 3, "inverter");
 
-        util.Testar.resultado("array comum", new int[]{4, 3, 2, 1}, inverter(new int[]{1, 2, 3, 4}));
-        util.Testar.resultado("um elemento", new int[]{42}, inverter(new int[]{42}));
-        util.Testar.resultado("array vazio", new int[]{}, inverter(new int[]{}));
-        util.Testar.resultado("com negativos", new int[]{7, 0, -5, 10}, inverter(new int[]{10, -5, 0, 7}));
-        util.Testar.resultado("dois elementos", new int[]{9, 5}, inverter(new int[]{5, 9}));
-        util.Testar.resultado("palindromo", new int[]{1, 2, 1}, inverter(new int[]{1, 2, 1}));
-        util.Testar.resultado("valores repetidos", new int[]{7, 8, 7, 7}, inverter(new int[]{7, 7, 8, 7}));
+        resultado("array comum", new int[]{4, 3, 2, 1}, inverter(new int[]{1, 2, 3, 4}));
+        resultado("um elemento", new int[]{42}, inverter(new int[]{42}));
+        resultado("array vazio", new int[]{}, inverter(new int[]{}));
+        resultado("com negativos", new int[]{7, 0, -5, 10}, inverter(new int[]{10, -5, 0, 7}));
+        resultado("dois elementos", new int[]{9, 5}, inverter(new int[]{5, 9}));
+        resultado("palindromo", new int[]{1, 2, 1}, inverter(new int[]{1, 2, 1}));
+        resultado("valores repetidos", new int[]{7, 8, 7, 7}, inverter(new int[]{7, 7, 8, 7}));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 05 — Verificar se um valor existe</h2>
  *
@@ -51,17 +53,17 @@ public class Exercicio05 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio05.class, 4, "existe");
+        iniciar(Exercicio05.class, 4, "existe");
 
-        util.Testar.resultado("valor existe", true, existe(new int[]{1, 2, 3, 4, 5}, 3));
-        util.Testar.resultado("valor nao existe", false, existe(new int[]{1, 2, 3, 4, 5}, 7));
-        util.Testar.resultado("array vazio", false, existe(new int[]{}, 1));
-        util.Testar.resultado("primeiro elemento", true, existe(new int[]{10, 20, 30}, 10));
-        util.Testar.resultado("ultimo elemento", true, existe(new int[]{10, 20, 30}, 30));
-        util.Testar.resultado("com negativos", true, existe(new int[]{-5, 0, 5}, -5));
-        util.Testar.resultado("um elemento (existe)", true, existe(new int[]{42}, 42));
-        util.Testar.resultado("um elemento (nao existe)", false, existe(new int[]{42}, 7));
+        resultado("valor existe", true, existe(new int[]{1, 2, 3, 4, 5}, 3));
+        resultado("valor nao existe", false, existe(new int[]{1, 2, 3, 4, 5}, 7));
+        resultado("array vazio", false, existe(new int[]{}, 1));
+        resultado("primeiro elemento", true, existe(new int[]{10, 20, 30}, 10));
+        resultado("ultimo elemento", true, existe(new int[]{10, 20, 30}, 30));
+        resultado("com negativos", true, existe(new int[]{-5, 0, 5}, -5));
+        resultado("um elemento (existe)", true, existe(new int[]{42}, 42));
+        resultado("um elemento (nao existe)", false, existe(new int[]{42}, 7));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

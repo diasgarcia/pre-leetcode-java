@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 03 — Encontrar o maior número</h2>
  *
@@ -50,16 +52,16 @@ public class Exercicio03 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio03.class, 5, "encontrarMaior");
+        iniciar(Exercicio03.class, 5, "encontrarMaior");
 
-        util.Testar.resultado("array comum", 9, encontrarMaior(new int[]{3, 7, 2, 9, 4}));
-        util.Testar.resultado("um elemento", 42, encontrarMaior(new int[]{42}));
-        util.Testar.resultado("todos negativos", -1, encontrarMaior(new int[]{-5, -2, -10, -1}));
-        util.Testar.resultado("todos iguais", 7, encontrarMaior(new int[]{7, 7, 7, 7}));
-        util.Testar.resultado("com negativos e positivos", 5, encontrarMaior(new int[]{-3, 0, 5, -2}));
-        util.Testar.resultado("maior no inicio", 10, encontrarMaior(new int[]{10, 3, 4, 2}));
-        util.Testar.resultado("maior no final", 10, encontrarMaior(new int[]{1, 2, 3, 10}));
+        resultado("array comum", 9, encontrarMaior(new int[]{3, 7, 2, 9, 4}));
+        resultado("um elemento", 42, encontrarMaior(new int[]{42}));
+        resultado("todos negativos", -1, encontrarMaior(new int[]{-5, -2, -10, -1}));
+        resultado("todos iguais", 7, encontrarMaior(new int[]{7, 7, 7, 7}));
+        resultado("com negativos e positivos", 5, encontrarMaior(new int[]{-3, 0, 5, -2}));
+        resultado("maior no inicio", 10, encontrarMaior(new int[]{10, 3, 4, 2}));
+        resultado("maior no final", 10, encontrarMaior(new int[]{1, 2, 3, 10}));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

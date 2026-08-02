@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 10 — Encontrar dois números com soma-alvo</h2>
  *
@@ -68,20 +70,20 @@ public class Exercicio10 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio10.class, 5, "encontrarDoisSoma");
+        iniciar(Exercicio10.class, 5, "encontrarDoisSoma");
 
-        util.Testar.resultado("caso padrao (2+7=9)", new int[]{0, 1}, encontrarDoisSoma(new int[]{2, 7, 11, 15}, 9));
-        util.Testar.resultado("solucao no meio (2+7=9)", new int[]{2, 3}, encontrarDoisSoma(new int[]{11, 15, 2, 7}, 9));
-        util.Testar.resultado("array de dois elementos", new int[]{0, 1}, encontrarDoisSoma(new int[]{3, 5}, 8));
-        util.Testar.resultado("negativos (-3 + -5 = -8)", new int[]{2, 4}, encontrarDoisSoma(new int[]{-1, -2, -3, -4, -5}, -8));
-        util.Testar.resultado("com zeros (0+0=0)", new int[]{0, 3}, encontrarDoisSoma(new int[]{0, 4, 3, 0}, 0));
-        util.Testar.resultado("valores duplicados (3+3=6)", new int[]{0, 1}, encontrarDoisSoma(new int[]{3, 3}, 6));
-        util.Testar.resultado("mesmo valor em posicoes diferentes", new int[]{1, 3}, encontrarDoisSoma(new int[]{5, 3, 8, 3}, 6));
-        util.Testar.resultado("misturado (10+ -5=5)", new int[]{0, 1}, encontrarDoisSoma(new int[]{10, -5, 0, 7}, 5));
-        util.Testar.resultado("solucao no final", new int[]{3, 4}, encontrarDoisSoma(new int[]{1, 8, 12, 3, 4}, 7));
-        util.Testar.resultado("valores grandes", new int[]{0, 2}, encontrarDoisSoma(new int[]{1000000, 500000, 2000000, 4000}, 3000000));
-        util.Testar.resultado("todos negativos", new int[]{1, 3}, encontrarDoisSoma(new int[]{-10, -20, -5, -15}, -35));
+        resultado("caso padrao (2+7=9)", new int[]{0, 1}, encontrarDoisSoma(new int[]{2, 7, 11, 15}, 9));
+        resultado("solucao no meio (2+7=9)", new int[]{2, 3}, encontrarDoisSoma(new int[]{11, 15, 2, 7}, 9));
+        resultado("array de dois elementos", new int[]{0, 1}, encontrarDoisSoma(new int[]{3, 5}, 8));
+        resultado("negativos (-3 + -5 = -8)", new int[]{2, 4}, encontrarDoisSoma(new int[]{-1, -2, -3, -4, -5}, -8));
+        resultado("com zeros (0+0=0)", new int[]{0, 3}, encontrarDoisSoma(new int[]{0, 4, 3, 0}, 0));
+        resultado("valores duplicados (3+3=6)", new int[]{0, 1}, encontrarDoisSoma(new int[]{3, 3}, 6));
+        resultado("mesmo valor em posicoes diferentes", new int[]{1, 3}, encontrarDoisSoma(new int[]{5, 3, 8, 3}, 6));
+        resultado("misturado (10+ -5=5)", new int[]{0, 1}, encontrarDoisSoma(new int[]{10, -5, 0, 7}, 5));
+        resultado("solucao no final", new int[]{3, 4}, encontrarDoisSoma(new int[]{1, 8, 12, 3, 4}, 7));
+        resultado("valores grandes", new int[]{0, 2}, encontrarDoisSoma(new int[]{1000000, 500000, 2000000, 4000}, 3000000));
+        resultado("todos negativos", new int[]{1, 3}, encontrarDoisSoma(new int[]{-10, -20, -5, -15}, -35));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

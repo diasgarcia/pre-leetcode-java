@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 04 — Encontrar o menor número</h2>
  *
@@ -50,16 +52,16 @@ public class Exercicio04 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio04.class, 5, "encontrarMenor");
+        iniciar(Exercicio04.class, 5, "encontrarMenor");
 
-        util.Testar.resultado("array comum", 2, encontrarMenor(new int[]{3, 7, 2, 9, 4}));
-        util.Testar.resultado("um elemento", 42, encontrarMenor(new int[]{42}));
-        util.Testar.resultado("todos negativos", -10, encontrarMenor(new int[]{-5, -2, -10, -1}));
-        util.Testar.resultado("todos iguais", 7, encontrarMenor(new int[]{7, 7, 7, 7}));
-        util.Testar.resultado("com negativos e positivos", -3, encontrarMenor(new int[]{-3, 0, 5, -2}));
-        util.Testar.resultado("menor no inicio", 1, encontrarMenor(new int[]{1, 10, 3, 4, 2}));
-        util.Testar.resultado("menor no final", 1, encontrarMenor(new int[]{5, 6, 7, 1}));
+        resultado("array comum", 2, encontrarMenor(new int[]{3, 7, 2, 9, 4}));
+        resultado("um elemento", 42, encontrarMenor(new int[]{42}));
+        resultado("todos negativos", -10, encontrarMenor(new int[]{-5, -2, -10, -1}));
+        resultado("todos iguais", 7, encontrarMenor(new int[]{7, 7, 7, 7}));
+        resultado("com negativos e positivos", -3, encontrarMenor(new int[]{-3, 0, 5, -2}));
+        resultado("menor no inicio", 1, encontrarMenor(new int[]{1, 10, 3, 4, 2}));
+        resultado("menor no final", 1, encontrarMenor(new int[]{5, 6, 7, 1}));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

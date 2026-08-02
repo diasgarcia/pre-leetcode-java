@@ -1,5 +1,7 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 02 — Contar números pares</h2>
  *
@@ -48,16 +50,16 @@ public class Exercicio02 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio02.class, 5, "contarPares");
+        iniciar(Exercicio02.class, 5, "contarPares");
 
-        util.Testar.resultado("array comum", 3, contarPares(new int[]{1, 2, 3, 4, 5, 6}));
-        util.Testar.resultado("todos pares", 4, contarPares(new int[]{2, 4, 6, 8}));
-        util.Testar.resultado("nenhum par", 0, contarPares(new int[]{1, 3, 5, 7}));
-        util.Testar.resultado("array vazio", 0, contarPares(new int[]{}));
-        util.Testar.resultado("com negativos e zero", 3, contarPares(new int[]{-2, -1, 0, 1, 2}));
-        util.Testar.resultado("um elemento impar", 0, contarPares(new int[]{7}));
-        util.Testar.resultado("um elemento par", 1, contarPares(new int[]{8}));
+        resultado("array comum", 3, contarPares(new int[]{1, 2, 3, 4, 5, 6}));
+        resultado("todos pares", 4, contarPares(new int[]{2, 4, 6, 8}));
+        resultado("nenhum par", 0, contarPares(new int[]{1, 3, 5, 7}));
+        resultado("array vazio", 0, contarPares(new int[]{}));
+        resultado("com negativos e zero", 3, contarPares(new int[]{-2, -1, 0, 1, 2}));
+        resultado("um elemento impar", 0, contarPares(new int[]{7}));
+        resultado("um elemento par", 1, contarPares(new int[]{8}));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }
