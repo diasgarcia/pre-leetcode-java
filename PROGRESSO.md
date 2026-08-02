@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Arrays e loops
-- Exercício atual: Exercício 06 — Retornar o índice de um valor
-- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio06.java
-- Método atual: indiceDe
+- Exercício atual: Exercício 08 — Contar ocorrências de um número
+- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio08.java
+- Método atual: contarOcorrencias
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 05 — Verificar se um valor existe
-- Próximo passo: implementar o método indiceDe
+- Último exercício concluído: Exercício 07 — Inverter um array
+- Próximo passo: implementar o método contarOcorrencias
 
 ## Módulos
 
@@ -39,3 +39,7 @@
 | 2026-08-01 | Arrays e loops | 05 — Verificar se um valor existe | Criado | Aguardando implementação do aluno |
 | 2026-08-01 | Arrays e loops | 05 — Verificar se um valor existe | Concluído | CCN 3, O(n), busca linear |
 | 2026-08-01 | Arrays e loops | 06 — Retornar o índice de um valor | Criado | Aguardando implementação do aluno |
+| 2026-08-01 | Arrays e loops | 06 — Retornar o índice de um valor | Concluído | CCN 3, O(n), for com índice |
+| 2026-08-01 | Arrays e loops | 07 — Inverter um array | Criado | Aguardando implementação do aluno |
+| 2026-08-01 | Arrays e loops | 07 — Inverter um array | Concluído | CCN 2, O(n) tempo / O(n) espaço |
+| 2026-08-01 | Arrays e loops | 08 — Contar ocorrências de um número | Criado | Aguardando implementação do aluno |
