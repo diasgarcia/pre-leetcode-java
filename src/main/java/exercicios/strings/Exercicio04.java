@@ -1,5 +1,7 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 04 — Contar ocorrências de um caractere</h2>
  *
@@ -56,17 +58,17 @@ public class Exercicio04 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio04.class, 5, "contarOcorrencias");
+        iniciar(Exercicio04.class, 5, "contarOcorrencias");
 
-        util.Testar.resultado("string comum", 3, contarOcorrencias("banana", 'a'));
-        util.Testar.resultado("case-sensitive minusculo vs maiusculo", 0, contarOcorrencias("Java", 'j'));
-        util.Testar.resultado("case-sensitive minusculo", 2, contarOcorrencias("Java", 'a'));
-        util.Testar.resultado("string vazia", 0, contarOcorrencias("", 'a'));
-        util.Testar.resultado("com numeros", 1, contarOcorrencias("abc123abc", '1'));
-        util.Testar.resultado("espacos", 2, contarOcorrencias("a b c", ' '));
-        util.Testar.resultado("case-sensitive minusculo em texto misto", 2, contarOcorrencias("Hello!", 'l'));
-        util.Testar.resultado("caractere ausente", 0, contarOcorrencias("teste", 'z'));
+        resultado("string comum", 3, contarOcorrencias("banana", 'a'));
+        resultado("case-sensitive minusculo vs maiusculo", 0, contarOcorrencias("Java", 'j'));
+        resultado("case-sensitive minusculo", 2, contarOcorrencias("Java", 'a'));
+        resultado("string vazia", 0, contarOcorrencias("", 'a'));
+        resultado("com numeros", 1, contarOcorrencias("abc123abc", '1'));
+        resultado("espacos", 2, contarOcorrencias("a b c", ' '));
+        resultado("case-sensitive minusculo em texto misto", 2, contarOcorrencias("Hello!", 'l'));
+        resultado("caractere ausente", 0, contarOcorrencias("teste", 'z'));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

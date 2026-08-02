@@ -1,5 +1,7 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 01 — Contar vogais</h2>
  *
@@ -54,17 +56,17 @@ public class Exercicio01 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio01.class, 5, "contarVogais");
+        iniciar(Exercicio01.class, 5, "contarVogais");
 
-        util.Testar.resultado("palavra comum", 2, contarVogais("hello"));
-        util.Testar.resultado("maiusculas e minusculas", 2, contarVogais("Java"));
-        util.Testar.resultado("todas maiusculas", 5, contarVogais("AEIOU"));
-        util.Testar.resultado("string vazia", 0, contarVogais(""));
-        util.Testar.resultado("sem vogais", 0, contarVogais("xyz"));
-        util.Testar.resultado("com hifen", 5, contarVogais("Pre-LeetCode"));
-        util.Testar.resultado("vogais com espacos", 5, contarVogais("a e i o u"));
-        util.Testar.resultado("caso misto", 2, contarVogais("AbCdEf"));
+        resultado("palavra comum", 2, contarVogais("hello"));
+        resultado("maiusculas e minusculas", 2, contarVogais("Java"));
+        resultado("todas maiusculas", 5, contarVogais("AEIOU"));
+        resultado("string vazia", 0, contarVogais(""));
+        resultado("sem vogais", 0, contarVogais("xyz"));
+        resultado("com hifen", 5, contarVogais("Pre-LeetCode"));
+        resultado("vogais com espacos", 5, contarVogais("a e i o u"));
+        resultado("caso misto", 2, contarVogais("AbCdEf"));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

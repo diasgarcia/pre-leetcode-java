@@ -1,7 +1,6 @@
 package exercicios.strings;
 
 import static util.Testar.*;
-import static util.Testar.resultado;
 
 /**
  * <h2>Exercício 07 — Substituir caractere</h2>

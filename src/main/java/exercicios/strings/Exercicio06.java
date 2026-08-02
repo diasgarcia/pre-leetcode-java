@@ -1,5 +1,7 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 06 — Extrair substring entre índices</h2>
  *
@@ -62,19 +64,19 @@ public class Exercicio06 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio06.class, 6, "extrairSubstring");
+        iniciar(Exercicio06.class, 6, "extrairSubstring");
 
-        util.Testar.resultado("substring normal", "nan", extrairSubstring("banana", 2, 5));
-        util.Testar.resultado("string inteira", "Java", extrairSubstring("Java", 0, 4));
-        util.Testar.resultado("indices iguais", "", extrairSubstring("hello", 1, 1));
-        util.Testar.resultado("fim igual ao comprimento", "lo", extrairSubstring("hello", 3, 5));
-        util.Testar.resultado("string vazia", "", extrairSubstring("", 0, 0));
-        util.Testar.resultado("inicio negativo", "", extrairSubstring("teste", -1, 3));
-        util.Testar.resultado("fim ultrapassa comprimento", "", extrairSubstring("teste", 1, 10));
-        util.Testar.resultado("inicio maior que fim", "", extrairSubstring("teste", 4, 2));
-        util.Testar.resultado("desde o inicio", "open", extrairSubstring("openai", 0, 4));
-        util.Testar.resultado("um unico caractere", "a", extrairSubstring("abc", 0, 1));
+        resultado("substring normal", "nan", extrairSubstring("banana", 2, 5));
+        resultado("string inteira", "Java", extrairSubstring("Java", 0, 4));
+        resultado("indices iguais", "", extrairSubstring("hello", 1, 1));
+        resultado("fim igual ao comprimento", "lo", extrairSubstring("hello", 3, 5));
+        resultado("string vazia", "", extrairSubstring("", 0, 0));
+        resultado("inicio negativo", "", extrairSubstring("teste", -1, 3));
+        resultado("fim ultrapassa comprimento", "", extrairSubstring("teste", 1, 10));
+        resultado("inicio maior que fim", "", extrairSubstring("teste", 4, 2));
+        resultado("desde o inicio", "open", extrairSubstring("openai", 0, 4));
+        resultado("um unico caractere", "a", extrairSubstring("abc", 0, 1));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

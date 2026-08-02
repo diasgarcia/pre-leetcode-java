@@ -1,5 +1,7 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 05 — Encontrar primeira ocorrência</h2>
  *
@@ -51,18 +53,18 @@ public class Exercicio05 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio05.class, 4, "encontrarPrimeiraOcorrencia");
+        iniciar(Exercicio05.class, 4, "encontrarPrimeiraOcorrencia");
 
-        util.Testar.resultado("primeiro caractere", 0, encontrarPrimeiraOcorrencia("banana", 'b'));
-        util.Testar.resultado("primeira entre repetidas", 1, encontrarPrimeiraOcorrencia("banana", 'a'));
-        util.Testar.resultado("caractere no meio", 2, encontrarPrimeiraOcorrencia("banana", 'n'));
-        util.Testar.resultado("ultimo caractere", 5, encontrarPrimeiraOcorrencia("Hello!", '!'));
-        util.Testar.resultado("case-sensitive ausente", -1, encontrarPrimeiraOcorrencia("Java", 'j'));
-        util.Testar.resultado("string vazia", -1, encontrarPrimeiraOcorrencia("", 'a'));
-        util.Testar.resultado("um caractere encontrado", 0, encontrarPrimeiraOcorrencia("a", 'a'));
-        util.Testar.resultado("caractere ausente", -1, encontrarPrimeiraOcorrencia("teste", 'z'));
-        util.Testar.resultado("espaco", 1, encontrarPrimeiraOcorrencia("a b c", ' '));
+        resultado("primeiro caractere", 0, encontrarPrimeiraOcorrencia("banana", 'b'));
+        resultado("primeira entre repetidas", 1, encontrarPrimeiraOcorrencia("banana", 'a'));
+        resultado("caractere no meio", 2, encontrarPrimeiraOcorrencia("banana", 'n'));
+        resultado("ultimo caractere", 5, encontrarPrimeiraOcorrencia("Hello!", '!'));
+        resultado("case-sensitive ausente", -1, encontrarPrimeiraOcorrencia("Java", 'j'));
+        resultado("string vazia", -1, encontrarPrimeiraOcorrencia("", 'a'));
+        resultado("um caractere encontrado", 0, encontrarPrimeiraOcorrencia("a", 'a'));
+        resultado("caractere ausente", -1, encontrarPrimeiraOcorrencia("teste", 'z'));
+        resultado("espaco", 1, encontrarPrimeiraOcorrencia("a b c", ' '));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

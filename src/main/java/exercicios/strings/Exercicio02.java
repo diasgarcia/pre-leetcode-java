@@ -1,5 +1,7 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 02 — Inverter uma string</h2>
  *
@@ -48,16 +50,16 @@ public class Exercicio02 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio02.class, 4, "inverter");
+        iniciar(Exercicio02.class, 4, "inverter");
 
-        util.Testar.resultado("string comum", "olleh", inverter("hello"));
-        util.Testar.resultado("maiusculas e minusculas", "avaJ", inverter("Java"));
-        util.Testar.resultado("um caractere", "a", inverter("a"));
-        util.Testar.resultado("string vazia", "", inverter(""));
-        util.Testar.resultado("com espacos", "c b a", inverter("a b c"));
-        util.Testar.resultado("com numeros", "321cba", inverter("abc123"));
-        util.Testar.resultado("palindromo", "arara", inverter("arara"));
+        resultado("string comum", "olleh", inverter("hello"));
+        resultado("maiusculas e minusculas", "avaJ", inverter("Java"));
+        resultado("um caractere", "a", inverter("a"));
+        resultado("string vazia", "", inverter(""));
+        resultado("com espacos", "c b a", inverter("a b c"));
+        resultado("com numeros", "321cba", inverter("abc123"));
+        resultado("palindromo", "arara", inverter("arara"));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

@@ -1,5 +1,7 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+
 /**
  * <h2>Exercício 03 — Verificar palíndromo</h2>
  *
@@ -74,17 +76,17 @@ public class Exercicio03 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio03.class, 5, "ehPalindromo");
+        iniciar(Exercicio03.class, 5, "ehPalindromo");
 
-        util.Testar.resultado("palindromo comum", true, ehPalindromo("arara"));
-        util.Testar.resultado("com maiusculas", true, ehPalindromo("Radar"));
-        util.Testar.resultado("string vazia", true, ehPalindromo(""));
-        util.Testar.resultado("um caractere", true, ehPalindromo("a"));
-        util.Testar.resultado("nao palindromo", false, ehPalindromo("Java"));
-        util.Testar.resultado("com espacos (nao palindromo)", false, ehPalindromo("ola mundo"));
-        util.Testar.resultado("palindromo numerico", true, ehPalindromo("12321"));
-        util.Testar.resultado("nao palindromo alfanumerico", false, ehPalindromo("abc123"));
+        resultado("palindromo comum", true, ehPalindromo("arara"));
+        resultado("com maiusculas", true, ehPalindromo("Radar"));
+        resultado("string vazia", true, ehPalindromo(""));
+        resultado("um caractere", true, ehPalindromo("a"));
+        resultado("nao palindromo", false, ehPalindromo("Java"));
+        resultado("com espacos (nao palindromo)", false, ehPalindromo("ola mundo"));
+        resultado("palindromo numerico", true, ehPalindromo("12321"));
+        resultado("nao palindromo alfanumerico", false, ehPalindromo("abc123"));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }
