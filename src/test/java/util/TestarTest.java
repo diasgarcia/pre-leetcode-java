@@ -337,6 +337,210 @@ class TestarTest {
         assertEquals(2, count);
     }
 
+    // ---- sobrecargas com falha ----
+
+    @Test
+    void sobrecargaLongComFalha() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("long fail", 100L, 200L);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("100"));
+        assertTrue(limpa.contains("200"));
+        assertTrue(limpa.contains("valores diferentes"));
+    }
+
+    @Test
+    void sobrecargaBooleanComFalha() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("bool fail", true, false);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("true"));
+        assertTrue(limpa.contains("false"));
+    }
+
+    @Test
+    void sobrecargaDoubleComFalha() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("double fail", 3.14, 3.15, 0.001);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("valores diferentes"));
+    }
+
+    @Test
+    void sobrecargaDoubleNoLimiteDoDelta() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("double edge", 3.14, 3.15, 0.01);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("PASS"));
+        assertTrue(limpa.contains("1/1"));
+    }
+
+    @Test
+    void sobrecargaStringComFalha() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("str fail", "abc", "xyz");
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("abc"));
+        assertTrue(limpa.contains("xyz"));
+    }
+
+    @Test
+    void sobrecargaStringEsperadoNullObtidoNaoNull() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("str null/not", (String) null, "abc");
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("null"));
+        assertTrue(limpa.contains("abc"));
+    }
+
+    @Test
+    void sobrecargaStringObtidoNullEsperadoNaoNull() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("str not/null", "abc", (String) null);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("null"));
+        assertTrue(limpa.contains("abc"));
+    }
+
+    @Test
+    void sobrecargaIntArrayComFalha() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("arr fail", new int[]{1, 2}, new int[]{3, 4});
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("valores diferentes"));
+    }
+
+    @Test
+    void sobrecargaIntArrayNull() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("arr null", (int[]) null, (int[]) null);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("PASS"));
+        assertTrue(limpa.contains("null"));
+    }
+
+    @Test
+    void sobrecargaObjectComFalha() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("obj fail", "abc", "xyz");
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("FAIL"));
+        assertTrue(limpa.contains("valores diferentes"));
+    }
+
+    @Test
+    void sobrecargaObjectNull() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("obj null", (Object) null, (Object) null);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("PASS"));
+        assertTrue(limpa.contains("null"));
+    }
+
+    @Test
+    void limiteCiclomaticoZeroNaoDeveDividirPorZero() {
+        Testar.iniciar(TestarTest.class, 0, "metodo");
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("x", 1, 1);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("CCN"));
+    }
+
+    // ---- colunas dinâmicas ----
+
+    @Test
+    void colunasDevemExpandirComNomesLongos() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("nome de caso bem longo com mais de 40 caracteres", 1, 1);
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("PASS"));
+    }
+
+    @Test
+    void colunasDevemExpandirComValoresLongos() {
+        Testar.iniciar(TestarTest.class);
+
+        String saida = executarCapturando(() -> {
+            Testar.resultado("arr grande", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+                    new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+            Testar.finalizar();
+        });
+
+        String limpa = removerAnsi(saida);
+        assertTrue(limpa.contains("PASS"));
+    }
+
     // ---- utilitários ----
 
     private String executarCapturando(Runnable acao) {
