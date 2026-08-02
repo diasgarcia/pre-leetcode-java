@@ -25,7 +25,7 @@ package exercicios.strings;
  *
  * <p><strong>Exemplos:</strong></p>
  * <pre>{@code
- * "banana", 2, 5    -> "ana"
+ * "banana", 2, 5    -> "nan"
  * "Java",   0, 4    -> "Java"
  * "hello",  1, 1    -> ""
  * "hello",  3, 5    -> "lo"
@@ -55,14 +55,16 @@ package exercicios.strings;
 public class Exercicio06 {
 
     public static String extrairSubstring(String texto, int indiceInicio, int indiceFim) {
-        // TODO: implemente sua solução
-        return "";
+
+        if (indiceInicio < 0 || indiceFim < 0 || indiceFim > texto.length() || indiceFim < indiceInicio) return "";
+
+        return texto.substring(indiceInicio, indiceFim);
     }
 
     public static void main(String[] args) {
         util.Testar.iniciar(Exercicio06.class, 6, "extrairSubstring");
 
-        util.Testar.resultado("substring normal", "ana", extrairSubstring("banana", 2, 5));
+        util.Testar.resultado("substring normal", "nan", extrairSubstring("banana", 2, 5));
         util.Testar.resultado("string inteira", "Java", extrairSubstring("Java", 0, 4));
         util.Testar.resultado("indices iguais", "", extrairSubstring("hello", 1, 1));
         util.Testar.resultado("fim igual ao comprimento", "lo", extrairSubstring("hello", 3, 5));
