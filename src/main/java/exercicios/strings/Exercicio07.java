@@ -1,5 +1,8 @@
 package exercicios.strings;
 
+import static util.Testar.*;
+import static util.Testar.resultado;
+
 /**
  * <h2>Exercício 07 — Substituir caractere</h2>
  *
@@ -57,23 +60,28 @@ package exercicios.strings;
 public class Exercicio07 {
 
     public static String substituirCaractere(String texto, char alvo, char substituto) {
-        // TODO: implemente sua solução
-        return "";
+
+        StringBuilder substituido = new StringBuilder();
+        for (int i = 0; i < texto.length(); i++) {
+            substituido.append((texto.charAt(i) == alvo) ? substituto : texto.charAt(i));
+        }
+
+        return substituido.toString();
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio07.class, 4, "substituirCaractere");
+        iniciar(Exercicio07.class, 4, "substituirCaractere");
 
-        util.Testar.resultado("substituicao comum", "bonono", substituirCaractere("banana", 'a', 'o'));
-        util.Testar.resultado("nenhuma substituicao", "teste", substituirCaractere("teste", 'x', 'y'));
-        util.Testar.resultado("string vazia", "", substituirCaractere("", 'a', 'b'));
-        util.Testar.resultado("case-sensitive", "Jovo", substituirCaractere("Java", 'a', 'o'));
-        util.Testar.resultado("substituir por espaco", "  b c", substituirCaractere("a b c", 'a', ' '));
-        util.Testar.resultado("multiplas ocorrencias", "bbbb", substituirCaractere("aaaa", 'a', 'b'));
-        util.Testar.resultado("um unico caractere", "x", substituirCaractere("z", 'z', 'x'));
-        util.Testar.resultado("inicio e fim diferentes", "cese", substituirCaractere("casa", 'a', 'e'));
-        util.Testar.resultado("maiusculas e minusculas", "Hexxo", substituirCaractere("Hello", 'l', 'x'));
+        resultado("substituicao comum", "bonono", substituirCaractere("banana", 'a', 'o'));
+        resultado("nenhuma substituicao", "teste", substituirCaractere("teste", 'x', 'y'));
+        resultado("string vazia", "", substituirCaractere("", 'a', 'b'));
+        resultado("case-sensitive", "Jovo", substituirCaractere("Java", 'a', 'o'));
+        resultado("substituir por espaco", "  b c", substituirCaractere("a b c", 'a', ' '));
+        resultado("multiplas ocorrencias", "bbbb", substituirCaractere("aaaa", 'a', 'b'));
+        resultado("um unico caractere", "x", substituirCaractere("z", 'z', 'x'));
+        resultado("inicio e fim diferentes", "cese", substituirCaractere("casa", 'a', 'e'));
+        resultado("maiusculas e minusculas", "Hexxo", substituirCaractere("Hello", 'l', 'x'));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }

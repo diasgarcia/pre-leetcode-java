@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 07 — Substituir caractere
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio07.java
-- Método atual: substituirCaractere
+- Exercício atual: Exercício 08 — Contar palavras
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio08.java
+- Método atual: contarPalavras
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 06 — Extrair substring entre índices
-- Próximo passo: implementar o método substituirCaractere para construir uma nova string com StringBuilder
+- Último exercício concluído: Exercício 07 — Substituir caractere
+- Próximo passo: implementar o método contarPalavras para identificar transições espaço/palavra
 
 ## Módulos
 
@@ -51,3 +51,5 @@
 | 2026-08-02 | Strings | 06 — Extrair substring entre índices | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 06 — Extrair substring entre índices | Concluído | CCN 5, O(k), validação |
 | 2026-08-02 | Strings | 07 — Substituir caractere | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 07 — Substituir caractere | Concluído | CCN 3, O(n), StringBuilder |
+| 2026-08-02 | Strings | 08 — Contar palavras | Criado | Aguardando implementação do aluno |
