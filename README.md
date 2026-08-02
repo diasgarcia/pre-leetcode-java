@@ -29,25 +29,22 @@ Cada módulo segue a mesma sequência:
 
 ```
 pre-leetcode-java/
-├── README.md              ← você está aqui
-├── AGENTS.md              ← instruções para LLMs atuarem como mentores
-├── PROGRESSO.md           ← estado atual da mentoria
+├── pom.xml                    ← configuração Maven, JUnit e cobertura
+├── README.md                  ← visão geral e instruções de uso
+├── AGENTS.md                  ← regras para LLMs atuarem como mentores
+├── PROGRESSO.md               ← estado da mentoria nesta branch
 ├── .gitignore
-├── teoria/
-│   └── 01_arrays_e_loops.md
-└── src/main/java/exercicios/
-    ├── arrays_e_loops/
-    ├── strings/
-    ├── hashmap_e_hashset/
-    ├── dois_ponteiros/
-    ├── janela_deslizante/
-    ├── pilha_e_fila/
-    ├── busca_binaria/
-    ├── recursao/
-    ├── lista_encadeada/
-    ├── arvores/
-    └── grafos/
+├── teoria/                    ← teoria dos módulos já iniciados
+├── src/
+│   ├── main/java/
+│   │   ├── exercicios/       ← exercícios disponíveis na branch
+│   │   └── util/             ← executor, tabela e análise ciclomática
+│   └── test/java/util/        ← testes unitários da infraestrutura
+└── .opencode/                 ← agentes e comandos da mentoria
 ```
+
+Os módulos futuros aparecem no roadmap, mas seus arquivos são criados apenas
+quando o estudo chega a eles.
 
 ## Roadmap
 
@@ -75,34 +72,51 @@ pre-leetcode-java/
 | Desafio do módulo | Combina vários conceitos do módulo. |
 | Estilo LeetCode | Problema equivalente a um Easy do LeetCode. |
 
+## Pré-requisitos
+
+- Java 17 ou superior;
+- Maven;
+- Lizard, opcional, para exibir a complexidade ciclomática.
+
+Instale o Lizard com um dos comandos abaixo:
+
+```bash
+py -m pip install lizard
+# ou
+python3 -m pip install lizard
+```
+
+Sem o Lizard, os exercícios continuam funcionando, mas a linha de CCN aparece
+com o status `INDISP`.
+
 ## Como executar um exercício
 
-### Windows (PowerShell)
-
-```powershell
-cd pre-leetcode-java
-mvn compile exec:java -Dexec.mainClass="exercicios.arrays_e_loops.Exercicio01"
-```
-
-Ou manualmente:
-
-```powershell
-javac -d target/classes src/main/java/exercicios/arrays_e_loops/Exercicio01.java
-java -cp target/classes exercicios.arrays_e_loops.Exercicio01
-```
-
-### Linux / macOS
+Na raiz do projeto, informe o nome completo da classe desejada:
 
 ```bash
-cd pre-leetcode-java
-mvn compile exec:java -Dexec.mainClass="exercicios.arrays_e_loops.Exercicio01"
+mvn compile exec:java "-Dexec.mainClass=exercicios.arrays_e_loops.Exercicio01"
 ```
 
-Ou manualmente:
+Troque o pacote e o nome da classe conforme o exercício atual indicado em
+`PROGRESSO.md`.
+
+## Testes unitários e cobertura
+
+Os testes escritos dentro do `main` pertencem aos exercícios e fornecem retorno
+imediato ao aluno. Separadamente, a infraestrutura do pacote `util` possui testes
+unitários em JUnit, organizados no padrão Arrange, Act e Assert (AAA).
+
+Execute a verificação completa com:
 
 ```bash
-javac -d target/classes src/main/java/exercicios/arrays_e_loops/Exercicio01.java
-java -cp target/classes exercicios.arrays_e_loops.Exercicio01
+mvn clean verify
+```
+
+O build exige 100% de cobertura de instruções, linhas, decisões e métodos do
+pacote `util`. O relatório HTML é gerado em:
+
+```text
+target/site/jacoco/index.html
 ```
 
 ### Saída esperada
@@ -118,7 +132,8 @@ A saída é uma tabela unificada com testes, resumo e complexidade ciclomática:
   CCN     OK      somar                             2     <= 3  baixa
 ```
 
-Se algum teste falhar, a linha de CCN mostrará `SKIP`:
+Se algum teste falhar, a linha de CCN mostrará `SKIP`, pois a correção deve ser
+resolvida antes da análise de complexidade.
 
 ## Regras de estudo
 
@@ -180,21 +195,11 @@ O projeto inclui agentes e comandos pré-configurados para OpenCode em
 | `/progresso` | Exibe o estado da trilha sem alterar nada |
 | `/analisar` | Compila, executa e mostra a complexidade ciclomática |
 
-## Tabela de progresso
+## Acompanhamento do progresso
 
-| Módulo | Status |
-|---|---|
-| 1 — Arrays e loops | Em andamento |
-| 2 — Strings | Pendente |
-| 3 — HashMap e HashSet | Pendente |
-| 4 — Dois ponteiros | Pendente |
-| 5 — Janela deslizante | Pendente |
-| 6 — Pilha e fila | Pendente |
-| 7 — Busca binária | Pendente |
-| 8 — Recursão | Pendente |
-| 9 — Lista encadeada | Pendente |
-| 10 — Árvores | Pendente |
-| 11 — Grafos | Pendente |
+Consulte `PROGRESSO.md` para saber o módulo, o exercício e o próximo passo da
+branch atual. O README permanece geral para fazer sentido em `main`, `template`
+e nas branches de módulo.
 
 ## Convenções
 
