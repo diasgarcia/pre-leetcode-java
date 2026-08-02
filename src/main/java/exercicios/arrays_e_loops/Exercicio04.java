@@ -38,8 +38,15 @@ package exercicios.arrays_e_loops;
 public class Exercicio04 {
 
     public static int encontrarMenor(int[] numeros) {
-        // TODO: implemente sua solução
-        return 0;
+
+        int menor = numeros[0];
+        for (int numero : numeros) {
+            if (numero < menor) {
+                menor = numero;
+            }
+        }
+
+        return menor;
     }
 
     public static void main(String[] args) {
