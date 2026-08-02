@@ -51,6 +51,9 @@ public final class Testar {
 
     private static int limiteCCN = 10;
 
+    private static final List<String[]> bufferLinhas = new ArrayList<>();
+    private static int larguraColunaNome = 25;
+
     private Testar() {}
 
     static void reset() {
@@ -62,6 +65,8 @@ public final class Testar {
         limiteCCN = 10;
         totalTestes = 0;
         totalFalhas = 0;
+        bufferLinhas.clear();
+        larguraColunaNome = 25;
     }
 
     // ---- API pública ----
@@ -154,10 +159,19 @@ public final class Testar {
         encerrado = true;
         if (!iniciado) return;
 
-        if (!cabecalhoImpresso) imprimirCabecalho();
+        for (String[] l : bufferLinhas) {
+            int tam = l[3].length();
+            if (tam > larguraColunaNome) larguraColunaNome = tam;
+        }
+        imprimirCabecalho();
+        for (String[] l : bufferLinhas) {
+            imprimirLinha(l[0], l[1], Boolean.parseBoolean(l[2]),
+                    l[3], l[4], l[5], l[6], l[7]);
+        }
+        bufferLinhas.clear();
 
         String sep = CINZA
-                + "  ------  ------  -------------------------  --------  --------  ------------"
+                + "  ------  ------  " + "-".repeat(larguraColunaNome) + "  --------  --------  ------------"
                 + RESET;
         System.out.println(sep);
 
@@ -233,10 +247,10 @@ public final class Testar {
         cabecalhoImpresso = true;
 
         System.out.println();
-        System.out.printf("  %-6s  %-6s  %-25s  %8s  %8s  %s%n",
+        System.out.printf("  %-6s  %-6s  %-" + larguraColunaNome + "s  %8s  %8s  %s%n",
                 "Tipo", "Status", "Caso / Metodo", "Obtido", "Esperado", "Detalhe");
-        System.out.printf("  %-6s  %-6s  %-25s  %8s  %8s  %s%n",
-                "------", "------", "-------------------------", "--------", "--------", "--------");
+        System.out.printf("  %-6s  %-6s  %-" + larguraColunaNome + "s  %8s  %8s  %s%n",
+                "------", "------", "-".repeat(larguraColunaNome), "--------", "--------", "--------");
     }
 
     private static void imprimirLinha(String tipo, String status, boolean statusOk,
@@ -254,7 +268,7 @@ public final class Testar {
         System.out.print(RESET);
         System.out.print("  ");
 
-        System.out.printf("%-25s  ", nome);
+        System.out.printf("%-" + larguraColunaNome + "s  ", nome);
 
         if ("-".equals(obtido)) {
             System.out.print(CINZA);
@@ -282,7 +296,7 @@ public final class Testar {
         String cor = passou ? VERDE : VERMELHO;
         String detalhe = passou ? "-" : "valores diferentes";
 
-        imprimirLinha("TESTE", status, passou, caso, obtido, esperado, detalhe, cor);
+        bufferLinhas.add(new String[]{"TESTE", status, String.valueOf(passou), caso, obtido, esperado, detalhe, cor});
     }
 
     // ---- análise ciclomática ----
