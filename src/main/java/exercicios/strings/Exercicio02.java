@@ -40,8 +40,11 @@ package exercicios.strings;
 public class Exercicio02 {
 
     public static String inverter(String texto) {
-        // TODO: implemente sua solução
-        return "";
+
+        StringBuilder invertido = new StringBuilder();
+        for (int i = texto.length() - 1; i >= 0; i--) invertido.append(texto.charAt(i));
+
+        return invertido.toString();
     }
 
     public static void main(String[] args) {
