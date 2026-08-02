@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Arrays e loops
-- Exercício atual: Exercício 08 — Contar ocorrências de um número
-- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio08.java
-- Método atual: contarOcorrencias
+- Exercício atual: Exercício 09 — Verificar se o array está ordenado
+- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio09.java
+- Método atual: estaOrdenado
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 07 — Inverter um array
-- Próximo passo: implementar o método contarOcorrencias
+- Último exercício concluído: Exercício 08 — Contar ocorrências de um número
+- Próximo passo: implementar o método estaOrdenado
 
 ## Módulos
 
@@ -43,3 +43,5 @@
 | 2026-08-01 | Arrays e loops | 07 — Inverter um array | Criado | Aguardando implementação do aluno |
 | 2026-08-01 | Arrays e loops | 07 — Inverter um array | Concluído | CCN 2, O(n) tempo / O(n) espaço |
 | 2026-08-01 | Arrays e loops | 08 — Contar ocorrências de um número | Criado | Aguardando implementação do aluno |
+| 2026-08-01 | Arrays e loops | 08 — Contar ocorrências de um número | Concluído | CCN 3, O(n) |
+| 2026-08-01 | Arrays e loops | 09 — Verificar se o array está ordenado | Criado | Aguardando implementação do aluno |
