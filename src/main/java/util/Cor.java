@@ -8,10 +8,14 @@ enum Cor {
     AMARELO("\u001B[33m"),
     RESET("\u001B[0m");
 
-    final String codigo;
+    private final String codigo;
 
     Cor(String codigo) {
         this.codigo = codigo;
+    }
+
+    String aplicar(String texto) {
+        return codigo + texto + RESET.codigo;
     }
 
     @Override

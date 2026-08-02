@@ -1,96 +1,85 @@
 package util;
 
-import java.util.ArrayList;
+import java.io.PrintStream;
 import java.util.List;
+import java.util.Objects;
 
-class Tabela {
+final class Tabela {
 
-    private final List<Linha> linhas = new ArrayList<>();
-    private boolean cabecalhoImpresso;
-    private int larguraNome = 25;
-    private int larguraValor = 8;
+    private static final int LARGURA_MINIMA_NOME = 25;
+    private static final int LARGURA_MINIMA_VALOR = 8;
+    private static final int LARGURA_MINIMA_DETALHE = 8;
 
-    void adicionar(Linha linha) {
-        linhas.add(linha);
+    private final PrintStream saida;
+
+    Tabela(PrintStream saida) {
+        this.saida = Objects.requireNonNull(saida, "saída não pode ser nula");
     }
 
-    void calcularLarguras() {
-        for (Linha l : linhas) {
-            int t = l.nome().length();
-            if (t > larguraNome) larguraNome = t;
-            t = l.obtido().length();
-            if (t > larguraValor) larguraValor = t;
-            t = l.esperado().length();
-            if (t > larguraValor) larguraValor = t;
+    void imprimir(List<Linha> linhas) {
+        Objects.requireNonNull(linhas, "linhas não podem ser nulas");
+        Dimensoes dimensoes = calcularDimensoes(linhas);
+
+        imprimirCabecalho(dimensoes);
+
+        Linha.Tipo tipoAnterior = null;
+        for (Linha linha : linhas) {
+            if (tipoAnterior == Linha.Tipo.TESTE && linha.tipo() != Linha.Tipo.TESTE) {
+                imprimirSeparador(dimensoes);
+            }
+            imprimirLinha(linha, dimensoes);
+            tipoAnterior = linha.tipo();
         }
     }
 
-    void imprimirTodas() {
-        imprimirCabecalho();
-        for (Linha l : linhas) {
-            imprimirLinha(l);
+    private Dimensoes calcularDimensoes(List<Linha> linhas) {
+        int larguraNome = LARGURA_MINIMA_NOME;
+        int larguraValor = LARGURA_MINIMA_VALOR;
+        int larguraDetalhe = LARGURA_MINIMA_DETALHE;
+
+        for (Linha linha : linhas) {
+            larguraNome = Math.max(larguraNome, linha.nome().length());
+            larguraValor = Math.max(larguraValor, linha.obtido().length());
+            larguraValor = Math.max(larguraValor, linha.esperado().length());
+            larguraDetalhe = Math.max(larguraDetalhe, linha.detalhe().length());
         }
+
+        return new Dimensoes(larguraNome, larguraValor, larguraDetalhe);
     }
 
-    void imprimirSeparador() {
-        System.out.println(Cor.CINZA
-                + "  ------  ------  " + "-".repeat(larguraNome)
-                + "  " + "-".repeat(larguraValor)
-                + "  " + "-".repeat(larguraValor)
-                + "  ------------"
-                + Cor.RESET);
-    }
-
-    void imprimirLinha(Linha l) {
-        imprimirCabecalho();
-
-        System.out.print("  ");
-        System.out.printf("%-6s", l.tipo());
-        System.out.print("  ");
-
-        System.out.print(l.corStatus());
-        System.out.printf("%-6s", l.status());
-        System.out.print(Cor.RESET);
-        System.out.print("  ");
-
-        System.out.printf("%-" + larguraNome + "s  ", l.nome());
-
-        if ("-".equals(l.obtido())) {
-            System.out.print(Cor.CINZA);
-            System.out.printf("%" + larguraValor + "s", l.obtido());
-            System.out.print(Cor.RESET);
-        } else {
-            System.out.printf("%" + larguraValor + "s", l.obtido());
-        }
-        System.out.print("  ");
-
-        System.out.print(Cor.CINZA);
-        System.out.printf("%" + larguraValor + "s", l.esperado());
-        System.out.print(Cor.RESET);
-        System.out.print("  ");
-
-        if ("-".equals(l.detalhe())) {
-            System.out.println(Cor.CINZA + l.detalhe() + Cor.RESET);
-        } else {
-            System.out.println(l.detalhe());
-        }
-    }
-
-    void reset() {
-        linhas.clear();
-        cabecalhoImpresso = false;
-        larguraNome = 25;
-        larguraValor = 8;
-    }
-
-    private void imprimirCabecalho() {
-        if (cabecalhoImpresso) return;
-        cabecalhoImpresso = true;
-
-        System.out.println();
-        System.out.printf("  %-6s  %-6s  %-" + larguraNome + "s  %" + larguraValor + "s  %" + larguraValor + "s  %s%n",
+    private void imprimirCabecalho(Dimensoes d) {
+        saida.println();
+        saida.printf("  %-6s  %-6s  %-" + d.nome() + "s  %" + d.valor() + "s  %" + d.valor() + "s  %s%n",
                 "Tipo", "Status", "Caso / Metodo", "Obtido", "Esperado", "Detalhe");
-        System.out.printf("  %-6s  %-6s  %-" + larguraNome + "s  %" + larguraValor + "s  %" + larguraValor + "s  %s%n",
-                "------", "------", "-".repeat(larguraNome), "-".repeat(larguraValor), "-".repeat(larguraValor), "--------");
+        saida.printf("  %-6s  %-6s  %-" + d.nome() + "s  %" + d.valor() + "s  %" + d.valor() + "s  %s%n",
+                "------", "------", "-".repeat(d.nome()), "-".repeat(d.valor()),
+                "-".repeat(d.valor()), "-".repeat(d.detalhe()));
     }
+
+    private void imprimirSeparador(Dimensoes d) {
+        String separador = "  ------  ------  " + "-".repeat(d.nome())
+                + "  " + "-".repeat(d.valor())
+                + "  " + "-".repeat(d.valor())
+                + "  " + "-".repeat(d.detalhe());
+        saida.println(Cor.CINZA.aplicar(separador));
+    }
+
+    private void imprimirLinha(Linha linha, Dimensoes d) {
+        saida.printf("  %-6s  ", linha.tipo());
+        saida.print(linha.status().colorir(String.format("%-6s", linha.status())));
+        saida.printf("  %-" + d.nome() + "s  ", linha.nome());
+
+        String obtido = String.format("%" + d.valor() + "s", linha.obtido());
+        saida.print("-".equals(linha.obtido()) ? Cor.CINZA.aplicar(obtido) : obtido);
+        saida.print("  ");
+
+        String esperado = String.format("%" + d.valor() + "s", linha.esperado());
+        saida.print(Cor.CINZA.aplicar(esperado));
+        saida.print("  ");
+
+        String detalhe = linha.detalhe();
+        saida.println("-".equals(detalhe) ? Cor.CINZA.aplicar(detalhe) : detalhe);
+    }
+
+    private record Dimensoes(int nome, int valor, int detalhe) {}
 }

@@ -1,60 +1,110 @@
 package util;
 
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class AnalisadorCiclomatico {
+final class AnalisadorCiclomatico implements AnalisadorDeComplexidade {
 
     private static final Pattern PADRAO_LINHA = Pattern.compile("\\s*(\\d+)\\s+(\\d+)");
+    private static final long TEMPO_LIMITE_PADRAO_MILISSEGUNDOS = 10_000;
 
-    Map<String, Integer> analisar(Class<?> classe, String[] metodosRegistrados) {
-        if (classe == null) return null;
+    private final List<String> comandoLizard;
+    private final long tempoLimiteMilissegundos;
 
-        File fonte = resolverArquivoFonte(classe);
-        if (fonte == null || !fonte.exists()) return null;
-
-        List<String> saida = executarLizard(fonte);
-        if (saida == null) return null;
-
-        return extrairCCN(saida, metodosRegistrados);
+    AnalisadorCiclomatico() {
+        this(List.of("lizard"), TEMPO_LIMITE_PADRAO_MILISSEGUNDOS);
     }
 
-    private File resolverArquivoFonte(Class<?> classe) {
+    AnalisadorCiclomatico(List<String> comandoLizard, long tempoLimiteMilissegundos) {
+        if (comandoLizard == null || comandoLizard.isEmpty()) {
+            throw new IllegalArgumentException("comando do Lizard não pode estar vazio");
+        }
+        if (tempoLimiteMilissegundos <= 0) {
+            throw new IllegalArgumentException("tempo limite deve ser maior que zero");
+        }
+
+        this.comandoLizard = List.copyOf(comandoLizard);
+        this.tempoLimiteMilissegundos = tempoLimiteMilissegundos;
+    }
+
+    @Override
+    public Analise analisar(Class<?> classe, List<String> metodosRegistrados) {
+        Path fonte = resolverArquivoFonte(classe);
+        if (!Files.isRegularFile(fonte)) {
+            return Analise.indisponivel("arquivo fonte não encontrado");
+        }
+
+        Execucao execucao = executarLizard(fonte);
+        if (!execucao.concluida()) {
+            return Analise.indisponivel(execucao.detalhe());
+        }
+
+        return Analise.sucesso(extrairCCN(execucao.linhas(), metodosRegistrados));
+    }
+
+    private Path resolverArquivoFonte(Class<?> classe) {
         String pacote = classe.getPackageName();
         String nome = classe.getSimpleName();
-        String caminho = "src/main/java/" + pacote.replace('.', '/') + "/" + nome + ".java";
-        File f = new File(caminho);
-        return f.exists() ? f : null;
+        return Path.of("src", "main", "java")
+                .resolve(pacote.replace('.', java.io.File.separatorChar))
+                .resolve(nome + ".java");
     }
 
-    private List<String> executarLizard(File fonte) {
-        try {
-            ProcessBuilder pb = new ProcessBuilder("lizard", fonte.getAbsolutePath());
-            pb.redirectErrorStream(true);
-            Process p = pb.start();
+    private Execucao executarLizard(Path fonte) {
+        List<String> comando = new ArrayList<>(comandoLizard);
+        comando.add(fonte.toAbsolutePath().toString());
 
-            List<String> linhas = new ArrayList<>();
-            try (BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
-                String linha;
-                while ((linha = r.readLine()) != null) {
-                    linhas.add(linha);
-                }
-            }
-            p.waitFor();
-            return linhas;
-        } catch (Exception e) {
-            return null;
+        try {
+            Process processo = new ProcessBuilder(comando)
+                    .redirectErrorStream(true)
+                    .start();
+            return aguardarResultado(processo);
+        } catch (IOException e) {
+            return Execucao.falha("não foi possível executar o Lizard");
         }
     }
 
-    private Map<String, Integer> extrairCCN(List<String> saida, String[] metodosRegistrados) {
+    private Execucao aguardarResultado(Process processo) throws IOException {
+        try {
+            if (!processo.waitFor(tempoLimiteMilissegundos, TimeUnit.MILLISECONDS)) {
+                processo.destroyForcibly();
+                return Execucao.falha(
+                        "análise do Lizard excedeu " + tempoLimiteMilissegundos + " milissegundos");
+            }
+
+            List<String> linhas = new ArrayList<>();
+            try (BufferedReader leitor = new BufferedReader(new InputStreamReader(
+                    processo.getInputStream(), StandardCharsets.UTF_8))) {
+                String linha;
+                while ((linha = leitor.readLine()) != null) {
+                    linhas.add(linha);
+                }
+            }
+
+            if (processo.exitValue() != 0) {
+                return Execucao.falha("Lizard encerrou com código " + processo.exitValue());
+            }
+
+            return Execucao.sucesso(linhas);
+        } catch (InterruptedException e) {
+            processo.destroyForcibly();
+            Thread.currentThread().interrupt();
+            return Execucao.falha("análise interrompida");
+        }
+    }
+
+    private Map<String, Integer> extrairCCN(List<String> saida, List<String> metodosRegistrados) {
         Map<String, Integer> todos = new LinkedHashMap<>();
         boolean naTabela = false;
 
@@ -68,26 +118,65 @@ class AnalisadorCiclomatico {
                 continue;
             }
             if (naTabela) {
-                Matcher m = PADRAO_LINHA.matcher(linha);
-                if (m.find()) {
-                    String[] partes = linha.trim().split("\\s+");
-                    if (partes.length >= 5) {
-                        String loc = partes[partes.length - 1];
-                        String nomeCompleto = loc.substring(0, loc.indexOf('@'));
-                        int doisPontos = nomeCompleto.lastIndexOf("::");
-                        if (doisPontos >= 0) {
-                            String nomeMetodo = nomeCompleto.substring(doisPontos + 2);
-                            todos.put(nomeMetodo, Integer.parseInt(partes[1]));
-                        }
-                    }
-                }
+                extrairMetodo(linha, todos);
             }
         }
 
         Map<String, Integer> resultado = new LinkedHashMap<>();
         for (String registrado : metodosRegistrados) {
-            resultado.put(registrado, todos.get(registrado));
+            if (todos.containsKey(registrado)) {
+                resultado.put(registrado, todos.get(registrado));
+            }
         }
         return resultado;
+    }
+
+    private void extrairMetodo(String linha, Map<String, Integer> metodos) {
+        Matcher matcher = PADRAO_LINHA.matcher(linha);
+        if (!matcher.find()) return;
+
+        String[] partes = linha.trim().split("\\s+");
+        if (partes.length < 5) return;
+
+        String localizacao = partes[partes.length - 1];
+        int arroba = localizacao.indexOf('@');
+        if (arroba <= 0) return;
+
+        String nomeCompleto = localizacao.substring(0, arroba);
+        int doisPontos = nomeCompleto.lastIndexOf("::");
+        if (doisPontos < 0) return;
+
+        String nomeMetodo = nomeCompleto.substring(doisPontos + 2);
+        metodos.put(nomeMetodo, Integer.parseInt(matcher.group(2)));
+    }
+
+    record Analise(Map<String, Integer> complexidades, String detalheFalha) {
+
+        static Analise sucesso(Map<String, Integer> complexidades) {
+            return new Analise(Map.copyOf(complexidades), null);
+        }
+
+        static Analise indisponivel(String detalhe) {
+            return new Analise(Map.of(), detalhe);
+        }
+
+        boolean disponivel() {
+            return detalheFalha == null;
+        }
+
+        Integer complexidadeDe(String metodo) {
+            return complexidades.get(metodo);
+        }
+    }
+
+    private record Execucao(boolean concluida, List<String> linhas, String detalhe) {
+
+        static Execucao sucesso(List<String> linhas) {
+            return new Execucao(true, List.copyOf(linhas), null);
+        }
+
+        static Execucao falha(String detalhe) {
+            return new Execucao(false, List.of(), detalhe);
+        }
     }
 }
