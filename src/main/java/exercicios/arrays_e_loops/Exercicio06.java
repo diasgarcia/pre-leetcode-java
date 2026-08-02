@@ -42,7 +42,11 @@ package exercicios.arrays_e_loops;
 public class Exercicio06 {
 
     public static int indiceDe(int[] numeros, int alvo) {
-        // TODO: implemente sua solução
+
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] == alvo) return i;
+        }
+
         return -1;
     }
 
