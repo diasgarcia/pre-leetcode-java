@@ -9,16 +9,19 @@ import java.util.Objects;
  *
  * <p>
  * Exibe testes, resumo e complexidade ciclomática em uma única tabela
- * colorida. Use {@code Testar.iniciar(...)} antes dos testes e
+ * colorida. Use {@code Testar.iniciar(...)} antes dos testes,
+ * {@code Resultado.resultado(...)} para cada caso e
  * {@code Testar.finalizar()} depois do último.
  * </p>
  *
  * <pre>{@code
+ * import static util.Resultado.resultado;
+ *
  * public static void main(String[] args) {
  *     Testar.iniciar(Exercicio01.class, 3, "somar");
  *
- *     Testar.resultado("array comum", 6, somar(new int[]{1, 2, 3}));
- *     Testar.resultado("array vazio", 0, somar(new int[]{}));
+ *     resultado("array comum", 6, somar(new int[]{1, 2, 3}));
+ *     resultado("array vazio", 0, somar(new int[]{}));
  *
  *     Testar.finalizar();
  * }
@@ -61,74 +64,41 @@ public final class Testar {
         iniciar(c, 10, metodos);
     }
 
-    // ---- int ----
+    static void registrar(boolean passou, String caso, String obtido, String esperado) {
+        verificarIniciado();
+        totalTestes++;
+        if (!passou) totalFalhas++;
+        tabela.adicionar(Linha.teste(passou, caso, obtido, esperado));
+    }
+
+    // ---- delegates para compatibilidade ----
 
     public static void resultado(String caso, int esperado, int obtido) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = esperado == obtido;
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, String.valueOf(obtido), String.valueOf(esperado)));
+        Resultado.resultado(caso, esperado, obtido);
     }
-
-    // ---- long ----
 
     public static void resultado(String caso, long esperado, long obtido) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = esperado == obtido;
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, String.valueOf(obtido), String.valueOf(esperado)));
+        Resultado.resultado(caso, esperado, obtido);
     }
-
-    // ---- boolean ----
 
     public static void resultado(String caso, boolean esperado, boolean obtido) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = esperado == obtido;
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, String.valueOf(obtido), String.valueOf(esperado)));
+        Resultado.resultado(caso, esperado, obtido);
     }
-
-    // ---- double (com delta) ----
 
     public static void resultado(String caso, double esperado, double obtido, double delta) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = Math.abs(esperado - obtido) <= delta;
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, String.valueOf(obtido), String.valueOf(esperado)));
+        Resultado.resultado(caso, esperado, obtido, delta);
     }
-
-    // ---- String ----
 
     public static void resultado(String caso, String esperado, String obtido) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = esperado == null ? obtido == null : esperado.equals(obtido);
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, String.valueOf(obtido), String.valueOf(esperado)));
+        Resultado.resultado(caso, esperado, obtido);
     }
-
-    // ---- int[] ----
 
     public static void resultado(String caso, int[] esperado, int[] obtido) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = Arrays.equals(esperado, obtido);
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, Arrays.toString(obtido), Arrays.toString(esperado)));
+        Resultado.resultado(caso, esperado, obtido);
     }
 
-    // ---- Object genérico (fallback) ----
-
     public static void resultado(String caso, Object esperado, Object obtido) {
-        verificarIniciado();
-        totalTestes++;
-        boolean passou = Objects.equals(esperado, obtido);
-        if (!passou) totalFalhas++;
-        tabela.adicionar(Linha.teste(passou, caso, String.valueOf(obtido), String.valueOf(esperado)));
+        Resultado.resultado(caso, esperado, obtido);
     }
 
     // ---- finalização ----
