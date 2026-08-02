@@ -40,7 +40,9 @@ pre-leetcode-java/
 │   │   ├── exercicios/       ← exercícios disponíveis na branch
 │   │   └── util/             ← executor, tabela e análise ciclomática
 │   └── test/java/util/        ← testes unitários da infraestrutura
-└── .opencode/                 ← agentes e comandos da mentoria
+├── .opencode/                 ← agentes e comandos para OpenCode
+├── .agents/skills/            ← Skill de mentoria para Codex
+└── .codex/agents/             ← agentes especializados para Codex
 ```
 
 Os módulos futuros aparecem no roadmap, mas seus arquivos são criados apenas
@@ -163,18 +165,21 @@ O mentor seguirá três princípios:
 - **Começar com dicas pequenas e aumentar gradualmente.**
 - **Explicar o raciocínio, não apenas o código.**
 
-### Usando OpenCode
+### Usando OpenCode e Codex
 
 Este repositório foi criado e é mantido com [OpenCode](https://opencode.ai),
 uma CLI que integra LLMs diretamente no terminal com contexto completo do
-projeto.
+projeto. O mesmo fluxo de mentoria também foi adaptado e testado com o Codex,
+usando uma Skill do repositório e agentes especializados.
 
-A stack usada pelo autor:
+As ferramentas testadas pelo autor:
 
 - **[OpenCode](https://opencode.ai)** — orquestrador que gerencia agentes,
   comandos e contexto do projeto
 - **[DeepSeek V4 Pro](https://deepseek.com)** — modelo de linguagem usado
-  como mentor
+  como mentor no fluxo original
+- **[Codex](https://developers.openai.com/codex/)** — agente de código usado
+  para validar a Skill, os agentes e os fluxos de mentoria equivalentes
 
 **Funciona com qualquer LLM.** O arquivo `AGENTS.md` é o contrato que
 qualquer modelo segue — seja via OpenCode, ChatGPT, Claude, Gemini ou
@@ -194,6 +199,20 @@ O projeto inclui agentes e comandos pré-configurados para OpenCode em
 | `/proximo` | Verifica aprovação e cria o próximo exercício |
 | `/progresso` | Exibe o estado da trilha sem alterar nada |
 | `/analisar` | Compila, executa e mostra a complexidade ciclomática |
+
+Para o Codex, a Skill fica em `.agents/skills/pre-leetcode-mentor/` e os
+agentes especializados ficam em `.codex/agents/`. Ela pode ser chamada em
+linguagem natural ou explicitamente:
+
+```text
+$pre-leetcode-mentor continuar
+$pre-leetcode-mentor validar
+$pre-leetcode-mentor revisar
+$pre-leetcode-mentor dica 2
+```
+
+Nos dois ambientes, `AGENTS.md` continua sendo a fonte compartilhada das regras
+pedagógicas e `PROGRESSO.md` registra o estado atual da trilha.
 
 ## Acompanhamento do progresso
 
