@@ -44,8 +44,15 @@ package exercicios.strings;
 public class Exercicio04 {
 
     public static int contarOcorrencias(String texto, char caractere) {
-        // TODO: implemente sua solução
-        return 0;
+
+        int ocorrencias = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            if (texto.charAt(i) == caractere) {
+                ocorrencias++;
+            }
+        }
+
+        return ocorrencias;
     }
 
     public static void main(String[] args) {

@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 04 — Contar ocorrências de um caractere
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio04.java
-- Método atual: contarOcorrencias
+- Exercício atual: Exercício 06 — Extrair substring entre índices
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio06.java
+- Método atual: extrairSubstring
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 03 — Verificar palíndromo
-- Próximo passo: implementar o método contarOcorrencias para contar quantas vezes um caractere aparece na string
+- Último exercício concluído: Exercício 05 — Encontrar primeira ocorrência
+- Próximo passo: implementar o método extrairSubstring para validar índices e retornar a substring correspondente
 
 ## Módulos
 
@@ -45,3 +45,7 @@
 | 2026-08-02 | Strings | 03 — Verificar palíndromo | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 03 — Verificar palíndromo | Concluído | CCN 3, O(n), dois ponteiros |
 | 2026-08-02 | Strings | 04 — Contar ocorrências de um caractere | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 04 — Contar ocorrências de um caractere | Concluído | CCN 3, O(n) |
+| 2026-08-02 | Strings | 05 — Encontrar primeira ocorrência | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 05 — Encontrar primeira ocorrência | Concluído | CCN 3, O(n), busca linear |
+| 2026-08-02 | Strings | 06 — Extrair substring entre índices | Criado | Aguardando implementação do aluno |
