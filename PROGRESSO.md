@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Arrays e loops
-- Exercício atual: Exercício 03 — Encontrar o maior número
-- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio03.java
-- Método atual: encontrarMaior
-- Status: concluído
+- Exercício atual: Exercício 04 — Encontrar o menor número
+- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio04.java
+- Método atual: encontrarMenor
+- Status: aguardando implementação
 - Último exercício concluído: Exercício 03 — Encontrar o maior número
-- Próximo passo: criar Exercício 04
+- Próximo passo: implementar o método encontrarMenor
 
 ## Módulos
 
@@ -34,3 +34,4 @@
 | 2026-08-01 | Arrays e loops | 02 — Contar números pares | Concluído | CCN 3, O(n), loop + if |
 | 2026-08-01 | Arrays e loops | 03 — Encontrar o maior número | Criado | Aguardando implementação do aluno |
 | 2026-08-01 | Arrays e loops | 03 — Encontrar o maior número | Concluído | CCN 3, O(n), numeros[0] |
+| 2026-08-01 | Arrays e loops | 04 — Encontrar o menor número | Criado | Aguardando implementação do aluno |
