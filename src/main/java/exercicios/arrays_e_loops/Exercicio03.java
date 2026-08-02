@@ -38,8 +38,15 @@ package exercicios.arrays_e_loops;
 public class Exercicio03 {
 
     public static int encontrarMaior(int[] numeros) {
-        // TODO: implemente sua solução
-        return 0;
+
+        int maior = numeros[0];
+        for (int numero : numeros) {
+            if (numero > maior) {
+                maior = numero;
+            }
+        }
+
+        return maior;
     }
 
     public static void main(String[] args) {
