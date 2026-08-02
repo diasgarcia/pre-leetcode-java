@@ -325,7 +325,7 @@ A diferença principal é que arrays são mutáveis (você pode alterar `array[i
 ## Lista planejada de exercícios
 
 | # | Título | Dificuldade | Foco |
-|---|---|---|---|---|
+|---|---|---|---|
 | 01 | Contar vogais | Fundamento | `charAt()`, `toLowerCase()` |
 | 02 | Inverter uma string | Fundamento | `StringBuilder`, percorrer de trás para frente |
 | 03 | Verificar palíndromo | Fácil | Dois ponteiros, `equals()` |
