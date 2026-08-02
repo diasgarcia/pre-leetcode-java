@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Aprender a manipular strings em Java: acessar caracteres, percorrer, comparar, extrair partes e entender a imutabilidade e o uso de {@code StringBuilder} para construção eficiente.
+Aprender a manipular strings em Java: acessar caracteres, percorrer, comparar, extrair partes e entender a imutabilidade e o uso de `StringBuilder` para construção eficiente.
 
 Este módulo constrói sobre a base de loops do Módulo 1, aplicando as mesmas operações (percorrer, contar, acumular, inverter) agora em sequências de caracteres.
 
@@ -12,7 +12,7 @@ Este módulo constrói sobre a base de loops do Módulo 1, aplicando as mesmas o
 
 ### O que é uma String?
 
-Uma {@code String} é uma sequência de caracteres. Em Java, {@code String} é uma classe imutável: uma vez criada, seu conteúdo nunca muda. Qualquer operação que "modifica" uma string na verdade cria uma nova.
+Uma `String` é uma sequência de caracteres. Em Java, `String` é uma classe imutável: uma vez criada, seu conteúdo nunca muda. Qualquer operação que "modifica" uma string na verdade cria uma nova.
 
 ```java
 String nome = "Java";          // literal — mais comum
@@ -48,7 +48,7 @@ for (int i = 0; i < 1000; i++) {
 
 ### StringBuilder
 
-Para construir strings incrementalmente, use {@code StringBuilder}:
+Para construir strings incrementalmente, use `StringBuilder`:
 
 ```java
 // EFICIENTE — O(n) no tempo
@@ -65,7 +65,7 @@ String resultado = sb.toString();
 | Acesso por índice | `charAt(i)` — `O(1)` | `charAt(i)` — `O(1)` |
 | Modificar após criado | Não (imutável) | Sim (mutável) |
 
-Quando usar {@code StringBuilder}:
+Quando usar `StringBuilder`:
 
 - Construir uma string caractere por caractere (ex: inverter, filtrar).
 - Concatenar dentro de um loop.
@@ -106,7 +106,7 @@ s.charAt(3); // 'a'
           J    a    v    a
 ```
 
-Lança {@code StringIndexOutOfBoundsException} se o índice for negativo ou >= `length()`.
+Lança `StringIndexOutOfBoundsException` se o índice for negativo ou >= `length()`.
 
 ### Percorrer uma string caractere por caractere
 
