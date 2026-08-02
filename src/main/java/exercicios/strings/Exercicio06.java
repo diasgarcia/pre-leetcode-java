@@ -56,7 +56,7 @@ public class Exercicio06 {
 
     public static String extrairSubstring(String texto, int indiceInicio, int indiceFim) {
 
-        if (indiceInicio < 0 || indiceFim < 0 || indiceFim > texto.length() || indiceFim < indiceInicio) return "";
+        if (indiceInicio < 0 || indiceFim > texto.length() || indiceFim < indiceInicio) return "";
 
         return texto.substring(indiceInicio, indiceFim);
     }

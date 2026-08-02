@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 06 — Extrair substring entre índices
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio06.java
-- Método atual: extrairSubstring
+- Exercício atual: Exercício 07 — Substituir caractere
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio07.java
+- Método atual: substituirCaractere
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 05 — Encontrar primeira ocorrência
-- Próximo passo: implementar o método extrairSubstring para validar índices e retornar a substring correspondente
+- Último exercício concluído: Exercício 06 — Extrair substring entre índices
+- Próximo passo: implementar o método substituirCaractere para construir uma nova string com StringBuilder
 
 ## Módulos
 
@@ -49,3 +49,5 @@
 | 2026-08-02 | Strings | 05 — Encontrar primeira ocorrência | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 05 — Encontrar primeira ocorrência | Concluído | CCN 3, O(n), busca linear |
 | 2026-08-02 | Strings | 06 — Extrair substring entre índices | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 06 — Extrair substring entre índices | Concluído | CCN 5, O(k), validação |
+| 2026-08-02 | Strings | 07 — Substituir caractere | Criado | Aguardando implementação do aluno |
