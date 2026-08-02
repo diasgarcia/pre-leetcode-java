@@ -1,5 +1,8 @@
 package exercicios.arrays_e_loops;
 
+import static util.Testar.*;
+
+
 /**
  * <h2>Exercício 01 — Somar todos os elementos</h2>
  *
@@ -38,15 +41,15 @@ public class Exercicio01 {
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio01.class, 3, "somar");
+        iniciar(Exercicio01.class, 3, "somar");
 
-        util.Testar.resultado("array comum", 6, somar(new int[]{1, 2, 3}));
-        util.Testar.resultado("com negativos", 7, somar(new int[]{10, -5, 2}));
-        util.Testar.resultado("array vazio", 0, somar(new int[]{}));
-        util.Testar.resultado("so negativos", -5, somar(new int[]{-2, -3}));
-        util.Testar.resultado("um elemento", 42, somar(new int[]{42}));
-        util.Testar.resultado("soma zero (anula)", 0, somar(new int[]{5, -5, 3, -3}));
+        resultado("array comum", 6, somar(new int[]{1, 2, 3}));
+        resultado("com negativos", 7, somar(new int[]{10, -5, 2}));
+        resultado("array vazio", 0, somar(new int[]{}));
+        resultado("so negativos", -5, somar(new int[]{-2, -3}));
+        resultado("um elemento", 42, somar(new int[]{42}));
+        resultado("soma zero (anula)", 0, somar(new int[]{5, -5, 3, -3}));
 
-        util.Testar.finalizar();
+        finalizar();
     }
 }
