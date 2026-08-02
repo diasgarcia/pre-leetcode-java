@@ -62,26 +62,16 @@ public class Exercicio06 {
     public static void main(String[] args) {
         util.Testar.iniciar(Exercicio06.class, 6, "extrairSubstring");
 
-        util.Testar.resultado("substring normal", "ana",
-                extrairSubstring("banana", 2, 5));
-        util.Testar.resultado("string inteira", "Java",
-                extrairSubstring("Java", 0, 4));
-        util.Testar.resultado("indices iguais", "",
-                extrairSubstring("hello", 1, 1));
-        util.Testar.resultado("fim igual ao comprimento", "lo",
-                extrairSubstring("hello", 3, 5));
-        util.Testar.resultado("string vazia", "",
-                extrairSubstring("", 0, 0));
-        util.Testar.resultado("inicio negativo", "",
-                extrairSubstring("teste", -1, 3));
-        util.Testar.resultado("fim ultrapassa comprimento", "",
-                extrairSubstring("teste", 1, 10));
-        util.Testar.resultado("inicio maior que fim", "",
-                extrairSubstring("teste", 4, 2));
-        util.Testar.resultado("desde o inicio", "open",
-                extrairSubstring("openai", 0, 4));
-        util.Testar.resultado("um unico caractere", "a",
-                extrairSubstring("abc", 0, 1));
+        util.Testar.resultado("substring normal", "ana", extrairSubstring("banana", 2, 5));
+        util.Testar.resultado("string inteira", "Java", extrairSubstring("Java", 0, 4));
+        util.Testar.resultado("indices iguais", "", extrairSubstring("hello", 1, 1));
+        util.Testar.resultado("fim igual ao comprimento", "lo", extrairSubstring("hello", 3, 5));
+        util.Testar.resultado("string vazia", "", extrairSubstring("", 0, 0));
+        util.Testar.resultado("inicio negativo", "", extrairSubstring("teste", -1, 3));
+        util.Testar.resultado("fim ultrapassa comprimento", "", extrairSubstring("teste", 1, 10));
+        util.Testar.resultado("inicio maior que fim", "", extrairSubstring("teste", 4, 2));
+        util.Testar.resultado("desde o inicio", "open", extrairSubstring("openai", 0, 4));
+        util.Testar.resultado("um unico caractere", "a", extrairSubstring("abc", 0, 1));
 
         util.Testar.finalizar();
     }
