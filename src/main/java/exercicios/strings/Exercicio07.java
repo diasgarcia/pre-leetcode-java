@@ -62,7 +62,9 @@ public class Exercicio07 {
 
         StringBuilder substituido = new StringBuilder();
         for (int i = 0; i < texto.length(); i++) {
-            substituido.append((texto.charAt(i) == alvo) ? substituto : texto.charAt(i));
+
+            char atual = texto.charAt(i);
+            substituido.append(atual == alvo ? substituto : atual);
         }
 
         return substituido.toString();
