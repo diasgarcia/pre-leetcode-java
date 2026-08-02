@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Arrays e loops
-- Exercício atual: Exercício 09 — Verificar se o array está ordenado
-- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio09.java
-- Método atual: estaOrdenado
+- Exercício atual: Exercício 10 — Encontrar dois números com soma-alvo
+- Arquivo atual: src/main/java/exercicios/arrays_e_loops/Exercicio10.java
+- Método atual: encontrarDoisSoma
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 08 — Contar ocorrências de um número
-- Próximo passo: implementar o método estaOrdenado
+- Último exercício concluído: Exercício 09 — Verificar se o array está ordenado
+- Próximo passo: implementar o método encontrarDoisSoma usando dois loops aninhados
 
 ## Módulos
 
@@ -45,3 +45,5 @@
 | 2026-08-01 | Arrays e loops | 08 — Contar ocorrências de um número | Criado | Aguardando implementação do aluno |
 | 2026-08-01 | Arrays e loops | 08 — Contar ocorrências de um número | Concluído | CCN 3, O(n) |
 | 2026-08-01 | Arrays e loops | 09 — Verificar se o array está ordenado | Criado | Aguardando implementação do aluno |
+| 2026-08-01 | Arrays e loops | 09 — Verificar se o array está ordenado | Concluído | CCN 3, O(n), early return |
+| 2026-08-02 | Arrays e loops | 10 — Encontrar dois números com soma-alvo | Criado | Aguardando implementação do aluno |
