@@ -53,6 +53,7 @@ public final class Testar {
 
     private static final List<String[]> bufferLinhas = new ArrayList<>();
     private static int larguraColunaNome = 25;
+    private static int larguraColunaValor = 8;
 
     private Testar() {}
 
@@ -67,6 +68,7 @@ public final class Testar {
         totalFalhas = 0;
         bufferLinhas.clear();
         larguraColunaNome = 25;
+        larguraColunaValor = 8;
     }
 
     // ---- API pública ----
@@ -162,6 +164,10 @@ public final class Testar {
         for (String[] l : bufferLinhas) {
             int tam = l[3].length();
             if (tam > larguraColunaNome) larguraColunaNome = tam;
+            tam = l[4].length();
+            if (tam > larguraColunaValor) larguraColunaValor = tam;
+            tam = l[5].length();
+            if (tam > larguraColunaValor) larguraColunaValor = tam;
         }
         imprimirCabecalho();
         for (String[] l : bufferLinhas) {
@@ -171,7 +177,7 @@ public final class Testar {
         bufferLinhas.clear();
 
         String sep = CINZA
-                + "  ------  ------  " + "-".repeat(larguraColunaNome) + "  --------  --------  ------------"
+                + "  ------  ------  " + "-".repeat(larguraColunaNome) + "  " + "-".repeat(larguraColunaValor) + "  " + "-".repeat(larguraColunaValor) + "  ------------"
                 + RESET;
         System.out.println(sep);
 
@@ -247,10 +253,10 @@ public final class Testar {
         cabecalhoImpresso = true;
 
         System.out.println();
-        System.out.printf("  %-6s  %-6s  %-" + larguraColunaNome + "s  %8s  %8s  %s%n",
+        System.out.printf("  %-6s  %-6s  %-" + larguraColunaNome + "s  %" + larguraColunaValor + "s  %" + larguraColunaValor + "s  %s%n",
                 "Tipo", "Status", "Caso / Metodo", "Obtido", "Esperado", "Detalhe");
-        System.out.printf("  %-6s  %-6s  %-" + larguraColunaNome + "s  %8s  %8s  %s%n",
-                "------", "------", "-".repeat(larguraColunaNome), "--------", "--------", "--------");
+        System.out.printf("  %-6s  %-6s  %-" + larguraColunaNome + "s  %" + larguraColunaValor + "s  %" + larguraColunaValor + "s  %s%n",
+                "------", "------", "-".repeat(larguraColunaNome), "-".repeat(larguraColunaValor), "-".repeat(larguraColunaValor), "--------");
     }
 
     private static void imprimirLinha(String tipo, String status, boolean statusOk,
@@ -272,15 +278,15 @@ public final class Testar {
 
         if ("-".equals(obtido)) {
             System.out.print(CINZA);
-            System.out.printf("%8s", obtido);
+            System.out.printf("%" + larguraColunaValor + "s", obtido);
             System.out.print(RESET);
         } else {
-            System.out.printf("%8s", obtido);
+            System.out.printf("%" + larguraColunaValor + "s", obtido);
         }
         System.out.print("  ");
 
         System.out.print(CINZA);
-        System.out.printf("%8s", esperado);
+        System.out.printf("%" + larguraColunaValor + "s", esperado);
         System.out.print(RESET);
         System.out.print("  ");
 
