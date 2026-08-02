@@ -53,8 +53,24 @@ package exercicios.strings;
 public class Exercicio03 {
 
     public static boolean ehPalindromo(String texto) {
-        // TODO: implemente sua solução
-        return false;
+
+        // Abordagem 1 — StringBuilder: simples e direta, mas O(n) de espaço porque cria uma cópia invertida da string inteira. Menor e mais simples, mas O(n)
+//        StringBuilder invertido = new StringBuilder();
+//        for (int i = texto.length() - 1; i >= 0; i--) invertido.append(texto.charAt(i));
+//
+//        return invertido.toString().equalsIgnoreCase(texto);
+
+        // Abordagem 2 — dois ponteiros: O(n) tempo, O(n) espaço (o toLowerCase() cria uma string auxiliar). Compara as pontas caminhando para o centro; se achar diferença, não é palíndromo. Codigo fica maior mas economico O(1)
+        texto = texto.toLowerCase();
+        int esq = 0;
+        int dir = texto.length() - 1;
+        while (esq < dir) {
+            if (texto.charAt(esq) != texto.charAt(dir)) return false;
+            esq++;
+            dir--;
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {

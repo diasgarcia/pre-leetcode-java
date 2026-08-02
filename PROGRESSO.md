@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 03 — Verificar palíndromo
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio03.java
-- Método atual: ehPalindromo
+- Exercício atual: Exercício 04 — Contar ocorrências de um caractere
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio04.java
+- Método atual: contarOcorrencias
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 02 — Inverter uma string
-- Próximo passo: implementar o método ehPalindromo para verificar se uma string é palíndromo
+- Último exercício concluído: Exercício 03 — Verificar palíndromo
+- Próximo passo: implementar o método contarOcorrencias para contar quantas vezes um caractere aparece na string
 
 ## Módulos
 
@@ -43,3 +43,5 @@
 | 2026-08-02 | Strings | 02 — Inverter uma string | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 02 — Inverter uma string | Concluído | CCN 2, O(n), StringBuilder |
 | 2026-08-02 | Strings | 03 — Verificar palíndromo | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 03 — Verificar palíndromo | Concluído | CCN 3, O(n), dois ponteiros |
+| 2026-08-02 | Strings | 04 — Contar ocorrências de um caractere | Criado | Aguardando implementação do aluno |
