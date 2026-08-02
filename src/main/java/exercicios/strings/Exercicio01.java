@@ -39,12 +39,22 @@ package exercicios.strings;
 public class Exercicio01 {
 
     public static int contarVogais(String texto) {
-        // TODO: implemente sua solução
-        return 0;
+
+        int contador = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            char c = Character.toLowerCase(texto.charAt(i));
+//            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+//            if ("aeiou".indexOf(Character.toLowerCase(texto.charAt(i))) >= 0) { // elimina a nescessidade da variavel c, mas fica mais dificil de ler
+            if ("aeiou".indexOf(c) >= 0) {
+                contador++;
+            }
+        }
+
+        return contador;
     }
 
     public static void main(String[] args) {
-        util.Testar.iniciar(Exercicio01.class, 9, "contarVogais");
+        util.Testar.iniciar(Exercicio01.class, 5, "contarVogais");
 
         util.Testar.resultado("palavra comum", 2, contarVogais("hello"));
         util.Testar.resultado("maiusculas e minusculas", 2, contarVogais("Java"));
