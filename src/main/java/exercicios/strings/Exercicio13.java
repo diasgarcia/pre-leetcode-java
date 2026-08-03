@@ -68,7 +68,7 @@ import static util.Testar.*;
 public class Exercicio13 {
 
     public static boolean ehPalindromoValido(String frase) {
-        ;
+        
         int esq = 0;
         int dir = frase.length() - 1;
         while (esq < dir) {
