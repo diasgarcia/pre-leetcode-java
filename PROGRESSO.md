@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 12 — trim() manual
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio12.java
-- Método atual: removerEspacosExtremos
+- Exercício atual: Exercício 13 — Valid Palindrome (LeetCode 125)
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio13.java
+- Método atual: ehPalindromoValido
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 11 — Frequência de caracteres
-- Próximo passo: implementar o método removerEspacosExtremos encontrando os índices de início e fim sem espaços, sem usar String.trim()
+- Último exercício concluído: Exercício 12 — trim() manual
+- Próximo passo: implementar o método ehPalindromoValido usando dois ponteiros, Character.isLetterOrDigit() e Character.toLowerCase()
 
 ## Módulos
 
@@ -60,4 +60,6 @@
 | 2026-08-02 | Strings | 11 — Frequência de caracteres | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 11 — Frequência de caracteres | Concluído | CCN 4, O(n), array de contagem |
 | 2026-08-02 | Strings | 12 — trim() manual | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 12 — trim() manual | Concluído | CCN 7, O(n), dois ponteiros |
+| 2026-08-02 | Strings | 13 — Valid Palindrome (LeetCode 125) | Criado | Aguardando implementação do aluno |
 

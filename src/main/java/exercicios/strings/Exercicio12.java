@@ -54,10 +54,23 @@ import static util.Testar.*;
  * </ul>
  */
 public class Exercicio12 {
+    public static String removerEspacosExtremos(String texto) { // trim
 
-    public static String removerEspacosExtremos(String texto) {
-        // TODO: implemente sua solução
-        return "";
+        if (texto.isEmpty()) return "";
+
+        int inicio = 0;
+        while (inicio < texto.length() && texto.charAt(inicio) == ' ') {
+            inicio++;
+        }
+
+        if (inicio == texto.length()) return "";
+
+        int fim = texto.length() - 1;
+        while (fim >= 0 && texto.charAt(fim) == ' ') {
+            fim--;
+        }
+
+        return texto.substring(inicio, fim + 1);
     }
 
     public static void main(String[] args) {
