@@ -27,7 +27,7 @@
 ## Histórico
 
 | Data | Módulo | Exercício | Status | Observações |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | 2026-08-01 | Arrays e loops | 01 — Somar todos os elementos | Concluído | CCN 2, O(n) |
 | 2026-08-01 | Arrays e loops | 02 — Contar números pares | Concluído | CCN 3, O(n) |
 | 2026-08-01 | Arrays e loops | 03 — Encontrar o maior número | Concluído | CCN 3, O(n) |
