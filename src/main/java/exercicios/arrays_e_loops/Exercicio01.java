@@ -35,8 +35,11 @@ import static util.Testar.*;
 public class Exercicio01 {
 
     public static int somar(int[] numeros) {
-        // TODO: implemente sua solução
-        return 0;
+
+        int soma = 0;
+        for (int numero : numeros) soma += numero;
+
+        return soma;
     }
 
     public static void main(String[] args) {

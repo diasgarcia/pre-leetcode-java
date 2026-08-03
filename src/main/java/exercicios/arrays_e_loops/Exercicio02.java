@@ -1,0 +1,65 @@
+package exercicios.arrays_e_loops;
+
+import static util.Testar.*;
+
+/**
+ * <h2>Exercício 02 — Contar números pares</h2>
+ *
+ * <p><strong>Enunciado:</strong></p>
+ * <p>
+ * Dado um array de números inteiros, retorne a quantidade de números pares
+ * presentes nele. Um número é par quando o resto da divisão por 2 é zero
+ * ({@code n % 2 == 0}).
+ * </p>
+ *
+ * <p><strong>Exemplos:</strong></p>
+ * <pre>{@code
+ * [1, 2, 3, 4, 5, 6] -> 3
+ * [2, 4, 6, 8]       -> 4
+ * [1, 3, 5, 7]       -> 0
+ * []                 -> 0
+ * [-2, -1, 0, 1, 2]  -> 3
+ * }</pre>
+ *
+ * <p><strong>Restrições:</strong></p>
+ * <ul>
+ *     <li>Não use Streams.</li>
+ *     <li>Use um loop.</li>
+ *     <li>Não altere o array original.</li>
+ *     <li>Array vazio deve retornar 0.</li>
+ * </ul>
+ *
+ * <p><strong>Complexidade esperada:</strong></p>
+ * <ul>
+ *     <li>Tempo: O(n)</li>
+ *     <li>Espaço: O(1)</li>
+ * </ul>
+ */
+public class Exercicio02 {
+
+    public static int contarPares(int[] numeros) {
+
+        int pares = 0;
+        for (int numero : numeros) {
+            if (numero % 2 == 0) {
+                pares++;
+            }
+        }
+
+        return pares;
+    }
+
+    public static void main(String[] args) {
+        iniciar(Exercicio02.class, 5, "contarPares");
+
+        resultado("array comum", 3, contarPares(new int[]{1, 2, 3, 4, 5, 6}));
+        resultado("todos pares", 4, contarPares(new int[]{2, 4, 6, 8}));
+        resultado("nenhum par", 0, contarPares(new int[]{1, 3, 5, 7}));
+        resultado("array vazio", 0, contarPares(new int[]{}));
+        resultado("com negativos e zero", 3, contarPares(new int[]{-2, -1, 0, 1, 2}));
+        resultado("um elemento impar", 0, contarPares(new int[]{7}));
+        resultado("um elemento par", 1, contarPares(new int[]{8}));
+
+        finalizar();
+    }
+}
