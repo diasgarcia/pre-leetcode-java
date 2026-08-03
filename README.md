@@ -40,9 +40,7 @@ pre-leetcode-java/
 │   │   ├── exercicios/       ← exercícios disponíveis na branch
 │   │   └── util/             ← executor, tabela e análise ciclomática
 │   └── test/java/util/        ← testes unitários da infraestrutura
-├── .opencode/                 ← agentes e comandos para OpenCode
-├── .agents/skills/            ← Skill de mentoria para Codex
-└── .codex/agents/             ← agentes especializados para Codex
+└── .opencode/                 ← agentes, comandos e Skills do OpenCode
 ```
 
 Os módulos futuros aparecem no roadmap, mas seus arquivos são criados apenas
@@ -165,12 +163,12 @@ O mentor seguirá três princípios:
 - **Começar com dicas pequenas e aumentar gradualmente.**
 - **Explicar o raciocínio, não apenas o código.**
 
-### Usando OpenCode e Codex
+### Usando OpenCode
 
 Este repositório foi criado e é mantido com [OpenCode](https://opencode.ai),
 uma CLI que integra LLMs diretamente no terminal com contexto completo do
-projeto. O mesmo fluxo de mentoria também foi adaptado e testado com o Codex,
-usando uma Skill do repositório e agentes especializados.
+projeto. A configuração distribuída pelo repositório usa somente o padrão
+nativo do OpenCode.
 
 As ferramentas testadas pelo autor:
 
@@ -178,8 +176,8 @@ As ferramentas testadas pelo autor:
   comandos e contexto do projeto
 - **[DeepSeek V4 Pro](https://deepseek.com)** — modelo de linguagem usado
   como mentor no fluxo original
-- **[Codex](https://developers.openai.com/codex/)** — agente de código usado
-  para validar a Skill, os agentes e os fluxos de mentoria equivalentes
+- **[Codex](https://developers.openai.com/codex/)** — agente de código também
+  usado durante a avaliação do projeto, sem configuração própria no repositório
 
 **Funciona com qualquer LLM.** O arquivo `AGENTS.md` é o contrato que
 qualquer modelo segue — seja via OpenCode, ChatGPT, Claude, Gemini ou
@@ -187,8 +185,8 @@ Copilot. Basta fornecer o `AGENTS.md` como instrução de sistema e o
 `PROGRESSO.md` como contexto. Para melhores resultados, use modelos com
 suporte a raciocínio (reasoning).
 
-O projeto inclui agentes e comandos pré-configurados para OpenCode em
-`.opencode/`:
+O projeto inclui agentes e comandos pré-configurados para o fluxo principal de
+mentoria no OpenCode:
 
 | Comando | Ação |
 |---|---|
@@ -199,20 +197,26 @@ O projeto inclui agentes e comandos pré-configurados para OpenCode em
 | `/proximo` | Verifica aprovação e cria o próximo exercício |
 | `/progresso` | Exibe o estado da trilha sem alterar nada |
 | `/analisar` | Compila, executa e mostra a complexidade ciclomática |
+| `/commit` | Valida a branch e cria um único commit autorizado |
 
-Para o Codex, a Skill fica em `.agents/skills/pre-leetcode-mentor/` e os
-agentes especializados ficam em `.codex/agents/`. Ela pode ser chamada em
-linguagem natural ou explicitamente:
+As Skills complementares ficam em `.opencode/skills/` e são carregadas sob
+demanda pela ferramenta nativa `skill`, sem precisar de agentes ou comandos
+próprios:
+
+- `quiz-do-modulo`;
+- `leetcode`;
+- `retrospectiva-do-modulo`.
+
+Elas podem ser chamadas em linguagem natural:
 
 ```text
-$pre-leetcode-mentor continuar
-$pre-leetcode-mentor validar
-$pre-leetcode-mentor revisar
-$pre-leetcode-mentor dica 2
+quero um quiz médio de Strings
+recomende problemas do LeetCode para o módulo 2
+faça uma retrospectiva do módulo 1
 ```
 
-Nos dois ambientes, `AGENTS.md` continua sendo a fonte compartilhada das regras
-pedagógicas e `PROGRESSO.md` registra o estado atual da trilha.
+No OpenCode, `AGENTS.md` continua sendo a fonte das regras pedagógicas e
+`PROGRESSO.md` registra o estado atual da trilha.
 
 ## Acompanhamento do progresso
 

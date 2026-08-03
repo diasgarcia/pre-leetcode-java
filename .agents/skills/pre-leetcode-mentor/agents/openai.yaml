@@ -1,4 +1,0 @@
-interface:
-  display_name: "Mentor Pré-LeetCode"
-  short_description: "Coordena exercícios e revisões da trilha Java"
-  default_prompt: "Use $pre-leetcode-mentor para continuar a trilha a partir do estado atual."
