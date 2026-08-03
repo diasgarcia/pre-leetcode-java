@@ -13,7 +13,7 @@
 ## Módulos
 
 - [x] 1 — Arrays e loops
-- [ ] 2 — Strings
+- [x] 2 — Strings
 - [ ] 3 — HashMap e HashSet
 - [ ] 4 — Dois ponteiros
 - [ ] 5 — Janela deslizante
@@ -62,4 +62,5 @@
 | 2026-08-02 | Strings | 12 — trim() manual | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 12 — trim() manual | Concluído | CCN 7, O(n), dois ponteiros |
 | 2026-08-02 | Strings | 13 — Valid Palindrome (LeetCode 125) | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 13 — Valid Palindrome (LeetCode 125) | Concluído | CCN 7, O(n)/O(1), dois ponteiros |
 

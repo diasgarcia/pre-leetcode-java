@@ -68,8 +68,24 @@ import static util.Testar.*;
 public class Exercicio13 {
 
     public static boolean ehPalindromoValido(String frase) {
-        // TODO: implemente sua solução usando dois ponteiros
-        return false;
+        ;
+        int esq = 0;
+        int dir = frase.length() - 1;
+        while (esq < dir) {
+            while (esq < dir && !Character.isLetterOrDigit(frase.charAt(esq))) {
+                esq++;
+            }
+            while (esq < dir && !Character.isLetterOrDigit(frase.charAt(dir))) {
+                dir--;
+            }
+            if (Character.toLowerCase(frase.charAt(esq)) != Character.toLowerCase(frase.charAt(dir))) {
+                return false;
+            }
+            esq++;
+            dir--;
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
