@@ -60,8 +60,21 @@ import static util.Testar.*;
 public class Exercicio08 {
 
     public static int contarPalavras(String texto) {
-        // TODO: implemente sua solução
-        return 0;
+
+        boolean emPalavra = false;
+        int contador = 0;
+
+        for (int i = 0; i < texto.length(); i++) {
+            if (texto.charAt(i) == ' ') {
+                emPalavra = false;
+
+            } else if (!emPalavra) {
+                contador++;
+                emPalavra = true;
+            }
+        }
+
+        return contador;
     }
 
     public static void main(String[] args) {
