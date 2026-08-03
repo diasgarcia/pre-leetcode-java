@@ -2,13 +2,13 @@
 
 ## Estado atual
 
-- Módulo atual: Strings
+- Módulo atual: Strings (concluído)
 - Exercício atual: Exercício 13 — Valid Palindrome (LeetCode 125)
 - Arquivo atual: src/main/java/exercicios/strings/Exercicio13.java
 - Método atual: ehPalindromoValido
-- Status: aguardando implementação
-- Último exercício concluído: Exercício 12 — trim() manual
-- Próximo passo: implementar o método ehPalindromoValido usando dois ponteiros, Character.isLetterOrDigit() e Character.toLowerCase()
+- Status: concluído
+- Último exercício concluído: Exercício 13 — Valid Palindrome (LeetCode 125)
+- Próximo passo: iniciar Módulo 3 — HashMap e HashSet
 
 ## Módulos
 
