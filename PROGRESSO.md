@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 11 — Frequência de caracteres
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio11.java
-- Método atual: frequenciaDeCaracteres
+- Exercício atual: Exercício 12 — trim() manual
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio12.java
+- Método atual: removerEspacosExtremos
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 10 — Maior prefixo comum
-- Próximo passo: implementar o método frequenciaDeCaracteres usando toCharArray() e array de contagem de 26 posições
+- Último exercício concluído: Exercício 11 — Frequência de caracteres
+- Próximo passo: implementar o método removerEspacosExtremos encontrando os índices de início e fim sem espaços, sem usar String.trim()
 
 ## Módulos
 
@@ -58,3 +58,6 @@
 | 2026-08-02 | Strings | 10 — Maior prefixo comum | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 10 — Maior prefixo comum | Concluído | CCN 3, O(min(n,m)) |
 | 2026-08-02 | Strings | 11 — Frequência de caracteres | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 11 — Frequência de caracteres | Concluído | CCN 4, O(n), array de contagem |
+| 2026-08-02 | Strings | 12 — trim() manual | Criado | Aguardando implementação do aluno |
+

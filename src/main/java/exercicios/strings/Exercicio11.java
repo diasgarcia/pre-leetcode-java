@@ -55,8 +55,15 @@ import static util.Testar.*;
 public class Exercicio11 {
 
     public static int[] frequenciaDeCaracteres(String texto) {
-        // TODO: implemente sua solução
-        return new int[26];
+
+        int[] freq = new int[26];
+        for (char c : texto.toLowerCase().toCharArray()) {
+            if (c >= 'a' && c <= 'z') {
+                freq[c - 'a']++;
+            }
+        }
+
+        return freq;
     }
 
     public static void main(String[] args) {
