@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 10 — Maior prefixo comum
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio10.java
-- Método atual: maiorPrefixoComum
+- Exercício atual: Exercício 11 — Frequência de caracteres
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio11.java
+- Método atual: frequenciaDeCaracteres
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 09 — Remover caracteres duplicados consecutivos
-- Próximo passo: implementar o método maiorPrefixoComum percorrendo caractere a caractere com um loop
+- Último exercício concluído: Exercício 10 — Maior prefixo comum
+- Próximo passo: implementar o método frequenciaDeCaracteres usando toCharArray() e array de contagem de 26 posições
 
 ## Módulos
 
@@ -56,3 +56,5 @@
 | 2026-08-02 | Strings | 08 — Contar palavras | Concluído | CCN 4, O(n), transição de estado |
 | 2026-08-02 | Strings | 09 — Remover caracteres duplicados consecutivos | Concluído | CCN 3, O(n), sentinela |
 | 2026-08-02 | Strings | 10 — Maior prefixo comum | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 10 — Maior prefixo comum | Concluído | CCN 3, O(min(n,m)) |
+| 2026-08-02 | Strings | 11 — Frequência de caracteres | Criado | Aguardando implementação do aluno |

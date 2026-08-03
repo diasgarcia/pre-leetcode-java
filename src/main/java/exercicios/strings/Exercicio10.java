@@ -55,8 +55,14 @@ import static util.Testar.*;
 public class Exercicio10 {
 
     public static String maiorPrefixoComum(String a, String b) {
-        // TODO: implemente sua solução
-        return "";
+
+        int minLen = Math.min(a.length(), b.length());
+
+        for (int i = 0; i < minLen; i++) {
+            if (a.charAt(i) != b.charAt(i)) return a.substring(0, i);
+        }
+
+        return a.substring(0, minLen);
     }
 
     public static void main(String[] args) {
