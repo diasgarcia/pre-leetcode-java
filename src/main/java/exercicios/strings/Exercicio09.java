@@ -62,8 +62,20 @@ import static util.Testar.*;
 public class Exercicio09 {
 
     public static String removerDuplicadosConsecutivos(String texto) {
-        // TODO: implemente sua solução
-        return "";
+
+        StringBuilder desduplicada = new StringBuilder();
+        char anterior = '\0';
+
+        for (int i = 0; i < texto.length(); i++) {
+
+            char c = texto.charAt(i);
+            if (c != anterior) {
+                desduplicada.append(c);
+                anterior = c;
+            }
+        }
+
+        return desduplicada.toString();
     }
 
     public static void main(String[] args) {

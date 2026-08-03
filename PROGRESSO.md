@@ -3,12 +3,12 @@
 ## Estado atual
 
 - Módulo atual: Strings
-- Exercício atual: Exercício 09 — Remover caracteres duplicados consecutivos
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio09.java
-- Método atual: removerDuplicadosConsecutivos
+- Exercício atual: Exercício 10 — Maior prefixo comum
+- Arquivo atual: src/main/java/exercicios/strings/Exercicio10.java
+- Método atual: maiorPrefixoComum
 - Status: aguardando implementação
-- Último exercício concluído: Exercício 08 — Contar palavras
-- Próximo passo: implementar o método removerDuplicadosConsecutivos usando StringBuilder e comparando com o caractere anterior
+- Último exercício concluído: Exercício 09 — Remover caracteres duplicados consecutivos
+- Próximo passo: implementar o método maiorPrefixoComum percorrendo caractere a caractere com um loop
 
 ## Módulos
 
@@ -54,4 +54,5 @@
 | 2026-08-02 | Strings | 07 — Substituir caractere | Concluído | CCN 3, O(n), StringBuilder |
 | 2026-08-02 | Strings | 08 — Contar palavras | Criado | Aguardando implementação do aluno |
 | 2026-08-02 | Strings | 08 — Contar palavras | Concluído | CCN 4, O(n), transição de estado |
-| 2026-08-02 | Strings | 09 — Remover caracteres duplicados consecutivos | Criado | Aguardando implementação do aluno |
+| 2026-08-02 | Strings | 09 — Remover caracteres duplicados consecutivos | Concluído | CCN 3, O(n), sentinela |
+| 2026-08-02 | Strings | 10 — Maior prefixo comum | Criado | Aguardando implementação do aluno |
