@@ -1,7 +1,6 @@
 ---
 name: retrospectiva-do-modulo
 description: Produz uma retrospectiva baseada em evidências de um módulo do projeto Pré-LeetCode Java. Use quando o aluno pedir balanço, revisão final, lacunas ou prontidão após concluir um módulo; não avance a trilha nem altere arquivos.
-compatibility: opencode
 ---
 
 # Retrospectiva do Módulo

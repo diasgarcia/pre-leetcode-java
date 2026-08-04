@@ -1,7 +1,6 @@
 ---
 name: quiz-do-modulo
 description: Aplica um quiz interativo sobre a teoria já estudada no projeto Pré-LeetCode Java. Use quando o aluno pedir perguntas, quiz, revisão ativa ou prática conceitual de um módulo; faça uma pergunta por vez e não revele soluções de exercícios pendentes.
-compatibility: opencode
 ---
 
 # Quiz do Módulo

@@ -2,13 +2,13 @@
 
 ## Estado atual
 
-- Módulo atual: Strings (concluído)
-- Exercício atual: Exercício 13 — Valid Palindrome (LeetCode 125)
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio13.java
-- Método atual: ehPalindromoValido
-- Status: concluído
-- Último exercício concluído: Exercício 13 — Valid Palindrome (LeetCode 125)
-- Próximo passo: iniciar Módulo 3 — HashMap e HashSet
+- Módulo atual: HashMap e HashSet
+- Exercício atual: Exercício 01 — Verificar duplicatas em um array
+- Arquivo atual: src/main/java/exercicios/hashmap_e_hashset/Exercicio01.java
+- Método atual: temDuplicatas
+- Status: aguardando implementação
+- Último exercício concluído: Exercício 13 — Valid Palindrome (LeetCode 125) (módulo Strings)
+- Próximo passo: implementar o método temDuplicatas
 
 ## Módulos
 
@@ -51,5 +51,6 @@
 | 2026-08-02 | Strings | 11 — Frequência de caracteres | Concluído | CCN 4, O(n), array de contagem |
 | 2026-08-02 | Strings | 12 — trim() manual | Concluído | CCN 7, O(n), dois ponteiros |
 | 2026-08-02 | Strings | 13 — Valid Palindrome (LeetCode 125) | Concluído | CCN 7, O(n)/O(1), dois ponteiros |
+| 2026-08-04 | HashMap e HashSet | 01 — Verificar duplicatas em um array | Aguardando | CCN ≤5, O(n)/O(n), HashSet |
 
 
