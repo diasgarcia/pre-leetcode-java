@@ -1,5 +1,5 @@
 ---
-description: Compila e executa somente o exercício atual, relatando resultados sem editar o código
+description: Compila, executa testes e fornece feedback de clean code sem editar o código
 mode: subagent
 temperature: 0
 steps: 10
@@ -123,6 +123,49 @@ Erro principal:
 
 Local:
 - arquivo e linha
+```
+
+---
+
+## Feedback de clean code (apenas quando testes passam)
+
+Se os testes passarem, leia o método da solução e faça uma análise completa.
+
+### O que analisar (obrigatório, todos os itens)
+
+| Item | Pergunta-chave |
+|---|---|
+| **Nomes** | Variáveis e métodos são claros, em português e expressam intenção? |
+| **DRY** | Alguma expressão ou lógica se repete? Extraia para variável local. |
+| **Código morto** | Tem comentários de código, variáveis não usadas, branches inalcançáveis? |
+| **Redundância** | Tem condição desnecessária, variável que só é usada uma vez, else após return? |
+| **Formatação** | Segue a convenção (um espaço após vírgula, sem alinhamento de colunas)? |
+| **Restrições** | Respeita as proibições do enunciado (Streams, ordenação, estruturas proibidas)? |
+| **Early return** | Dá pra retornar mais cedo e evitar aninhamento ou variável de controle? |
+| **Escopo** | Alguma variável tem escopo maior do que precisa? |
+| **Magic numbers** | Tem número solto sem explicação? (exceto -1, 0, 1 em contextos óbvios) |
+
+### O que NÃO analisar
+
+- Complexidade (já está na tabela).
+- Correção (testes já validaram).
+- Otimizações profundas de performance.
+
+### Formato da resposta
+
+Adicione ao final do relatório. Para cada item com problema, dê uma dica concreta de como melhorar. Se não houver nada a apontar, diga "Nada a apontar.":
+
+```
+FEEDBACK DE CLEAN CODE:
+- Nomes: [ok ou sugestão específica]
+- DRY: [ok ou sugestão específica]
+- Código morto: [ok ou sugestão específica]
+- Redundância: [ok ou sugestão específica]
+- Formatação: [ok ou sugestão específica]
+- Restrições: [ok ou sugestão específica]
+- Early return: [ok ou sugestão específica]
+- Escopo: [ok ou sugestão específica]
+- Magic numbers: [ok ou sugestão específica]
 ```
 
 ---

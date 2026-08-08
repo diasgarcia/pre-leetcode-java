@@ -2,13 +2,13 @@
 
 ## Estado atual
 
-- Módulo atual: Strings (concluído)
-- Exercício atual: Exercício 13 — Valid Palindrome (LeetCode 125)
-- Arquivo atual: src/main/java/exercicios/strings/Exercicio13.java
-- Método atual: ehPalindromoValido
-- Status: concluído
-- Último exercício concluído: Exercício 13 — Valid Palindrome (LeetCode 125)
-- Próximo passo: iniciar Módulo 3 — HashMap e HashSet
+- Módulo atual: HashMap e HashSet
+- Exercício atual: Exercício 04 — Primeiro caractere único em uma string
+- Arquivo atual: src/main/java/exercicios/hashmap_e_hashset/Exercicio04.java
+- Método atual: primeiroCaractereUnico
+- Status: aguardando implementação
+- Último exercício concluído: Exercício 03 — Dois números que somam ao alvo (módulo HashMap e HashSet)
+- Próximo passo: implementar o método primeiroCaractereUnico
 
 ## Módulos
 
@@ -51,5 +51,9 @@
 | 2026-08-02 | Strings | 11 — Frequência de caracteres | Concluído | CCN 4, O(n), array de contagem |
 | 2026-08-02 | Strings | 12 — trim() manual | Concluído | CCN 7, O(n), dois ponteiros |
 | 2026-08-02 | Strings | 13 — Valid Palindrome (LeetCode 125) | Concluído | CCN 7, O(n)/O(1), dois ponteiros |
+| 2026-08-07 | HashMap e HashSet | 01 — Verificar duplicatas em um array | Concluído | CCN 3, O(n)/O(n), HashSet |
+| 2026-08-07 | HashMap e HashSet | 02 — Contar frequência de caracteres com HashMap | Concluído | CCN 2, O(n)/O(k), HashMap, getOrDefault() |
+| 2026-08-08 | HashMap e HashSet | 03 — Dois números que somam ao alvo (two‑sum) | Concluído | CCN 3, O(n)/O(n), HashMap, complemento |
+| 2026-08-08 | HashMap e HashSet | 04 — Primeiro caractere único em uma string | Aguardando implementação | CCN -, HashMap, frequência + busca linear |
 
 

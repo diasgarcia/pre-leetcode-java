@@ -119,7 +119,7 @@ Ao criar um novo exercício:
 - Considere o que o aluno já concluiu.
 - **Não exija conceitos que ainda não foram apresentados.**
 - Use dificuldade incremental.
-- Prepare testes que cubram casos comuns e extremos.
+- Prepare testes que cubram todas as possibilidades relevantes ao problema: array vazio, um único elemento, valores negativos, zeros, valores grandes, etc.
 - Os testes devem cobrir todas as possibilidades relevantes ao problema: array vazio, um único elemento, valores negativos, zeros, valores grandes, etc.
 - O retorno temporário (`return 0;`) deve falhar em pelo menos alguns testes — um exercício com stub que acerta tudo por coincidência está mal testado.
 - Inclua pelo menos 4 testes.
@@ -129,6 +129,18 @@ Ao criar um novo exercício:
 - Use um arquivo por exercício.
 - Atualize `PROGRESSO.md` ao criar o exercício.
 - Use Javadoc HTML conforme a seção "Formatação do Javadoc dos exercícios".
+
+### Níveis de dificuldade
+
+Use esta progressão dentro de cada módulo:
+
+| Nível | Objetivo |
+|---|---|
+| Fundamento | Praticar a operação básica do módulo. |
+| Fácil | Combinar duas ideias simples. |
+| Fácil intermediário | Exigir atenção a detalhes ou casos extremos. |
+| Desafio do módulo | Combinar vários conceitos já apresentados. |
+| Estilo LeetCode | Aplicar o conteúdo do módulo em um problema equivalente a Easy. |
 
 ### Formatação do Javadoc dos exercícios
 
@@ -218,6 +230,26 @@ Não otimize prematuramente — foque em código claro e correto antes de pensar
 
 ---
 
+## Convenções do projeto
+
+- Use nomes em português brasileiro para classes, métodos, variáveis e pacotes.
+- Mantenha um arquivo `.java` por exercício.
+- Nomeie as classes como `Exercicio01`, `Exercicio02` e assim por diante.
+- Coloque a solução do aluno somente no método indicado pelo enunciado.
+- Mantenha `// TODO: implemente sua solução` enquanto o exercício estiver pendente.
+- Inicie o `main` com `Testar.iniciar(...)` e encerre com `Testar.finalizar()`.
+- Registre cada caso com `Testar.resultado(...)`.
+- Chamadas de `resultado()` devem usar um único espaço após cada vírgula, **sem alinhamento de colunas** com espaços extras. Exemplo correto:
+  `resultado("array vazio", 0, somar(new int[]{}));`
+- Use o método auxiliar `Testar.mapa(Object... pares)` para construir `HashMap<Character, Integer>` nos testes. Exemplo:
+  `resultado("string comum", mapa('b', 1, 'a', 3, 'n', 2), contarFrequencia("banana"));`
+- Informe no Javadoc a complexidade esperada de tempo e espaço.
+- Organize os testes unitários da infraestrutura no padrão Arrange, Act e Assert (AAA).
+- O pacote {@code util} deve manter 100% de cobertura de testes.
+- Novos métodos auxiliares em {@code util} (como {@code Testar.mapa()}) podem ser criados quando necessário, **desde que acompanhados de testes unitários** que mantenham a cobertura em 100%.
+
+---
+
 ## Git e arquivos
 
 - Preserve os arquivos existentes.
@@ -285,6 +317,42 @@ Exemplos:
 - `modulo(01): cria Exercicio01 — Somar todos os elementos`
 - `modulo(01): revisao — Exercicio01 aprovado`
 - `modulo(02): cria Exercicio01 — Contar vogais`
+
+## Formatação de Pull Requests
+
+Toda PR de módulo deve seguir o template abaixo. Use `gh pr edit --body-file` (nunca `--body` inline) para evitar que o PowerShell escape crases e quebre caracteres.
+
+### Template
+
+```markdown
+## Modulo NN - Nome do modulo
+
+**Em andamento.** PR aberta para acompanhar o progresso.
+
+### Exercicios
+
+| # | Metodo | Conceito | Status | CCN | Complexidade |
+|---|---|---|---|---|---|
+| 01 | `metodo` | conceito | Aguardando implementacao | - | - |
+| 02 | ... | ... | Pendente | - | - |
+
+### Progressao
+conceito01 -> conceito02 -> ...
+
+### Etapa atual
+Implementando Exercicio NN - `metodo` (estrutura, complexidade).
+```
+
+### Regras
+
+- Use `--body-file` com um arquivo temporário, **nunca** `--body` direto no PowerShell.
+- Use ASCII puro: `->` em vez de `→`, `-` em vez de `—`.
+- Mantenha os nomes de métodos entre crases (`` ` ``).
+- Ao concluir um exercício, preencha CCN e Complexidade.
+- A coluna Status usa: `Concluido`, `Aguardando implementacao`, `Pendente`.
+- Gere o arquivo com `Set-Content -LiteralPath 'pr-body.md' -Encoding UTF8 -Value @' ... '@`.
+- Remova o arquivo temporário após o `gh pr edit`.
+- Atualize a PR a cada avanço de exercício (conclusão + criação do próximo).
 
 ## Arquivos de teoria
 
@@ -360,9 +428,24 @@ As respostas devem ser:
 
 ---
 
-## Comandos de verificação
+## Ambiente e comandos de verificação
 
-Use estes comandos para navegar pelo projeto:
+### Pré-requisitos
+
+- Java 17 ou superior;
+- Maven;
+- Lizard, opcional, para calcular a complexidade ciclomática.
+
+Instale o Lizard com um dos comandos:
+
+```bash
+py -m pip install lizard
+# ou
+python3 -m pip install lizard
+```
+
+Sem o Lizard, os exercícios continuam funcionando e a linha de CCN aparece
+com o status `INDISP`.
 
 ### Listar estrutura
 
@@ -406,6 +489,38 @@ java -cp target/classes exercicios.arrays_e_loops.Exercicio01
 mvn compile exec:java -Dexec.mainClass="exercicios.arrays_e_loops.Exercicio01"
 ```
 
+Use o pacote e a classe indicados em `PROGRESSO.md`.
+
+### Testes unitários e cobertura
+
+Os testes no método `main` pertencem a cada exercício e fornecem retorno
+imediato ao aluno. Os testes JUnit em `src/test/java/util/` validam a
+infraestrutura e seguem o padrão AAA.
+
+Execute a verificação completa com:
+
+```bash
+mvn clean verify
+```
+
+O build exige 100% de cobertura de instruções, linhas, decisões e métodos do
+pacote `util`. O relatório HTML é gerado em
+`target/site/jacoco/index.html`.
+
+### Saída esperada dos exercícios
+
+```text
+  Tipo    Status  Caso / Metodo                Obtido  Esperado  Detalhe
+  ------  ------  -------------------------  --------  --------  --------
+  TESTE   PASS    array comum                       6         6  -
+  TESTE   PASS    array vazio                       0         0  -
+  RESUMO  PASS    testes                          2/2       2/2  todos passaram
+  CCN     OK      somar                             2      <= 3  baixa
+```
+
+Se algum teste falhar, a linha de CCN deve mostrar `SKIP`; a correção vem antes
+da análise de complexidade.
+
 ### Verificar alterações no Git
 
 ```bash
@@ -435,7 +550,7 @@ Comandos disponíveis:
 |---|---|
 | `/continuar` | Mostra o estado atual e o próximo passo |
 | `/revisar` | Fluxo completo: validar → revisar → criar próximo (se aprovado) |
-| `/validar` | Compila e executa testes, sem revisar nem avançar |
+| `/validar` | Compila, executa testes e analisa clean code (nomes, DRY, código morto, etc.) |
 | `/dica [nível]` | Fornece dica progressiva (nível 1 a 5) |
 | `/proximo` | Verifica aprovação e cria o próximo exercício |
 | `/progresso` | Exibe o estado da trilha sem alterar nada |
@@ -454,7 +569,7 @@ Os agentes do OpenCode herdam as regras deste `AGENTS.md`.
 Skills nativas disponíveis em `.opencode/skills/`:
 
 - `quiz-do-modulo`: pratica a teoria com uma pergunta por vez;
-- `leetcode`: recomenda problemas adequados aos módulos concluídos;
+- `leetcode`: recomenda problemas adequados aos módulos concluídos e aceita os filtros `easy`, `medium` ou `hard`;
 - `retrospectiva-do-modulo`: produz um balanço baseado em evidências do módulo.
 
 Essas Skills são carregadas sob demanda pela ferramenta nativa `skill`. Elas não dependem de agentes nem comandos próprios. Em caso de conflito, prevalecem as regras deste arquivo e a solicitação explícita mais recente do aluno.

@@ -1,5 +1,7 @@
 package util;
 
+import java.util.HashMap;
+
 public final class Testar {
 
     private static final int LIMITE_CCN_PADRAO = 10;
@@ -7,6 +9,23 @@ public final class Testar {
     private static SessaoDeTestes sessaoAtual;
 
     private Testar() {}
+
+    /**
+     * Constrói um {@code HashMap<Character, Integer>} a partir de pares
+     * chave/valor alternados. Útil para montar valores esperados em testes
+     * que retornam mapas de frequência.
+     *
+     * <pre>{@code
+     * mapa('a', 3, 'b', 1)  -> {'a'=3, 'b'=1}
+     * }</pre>
+     */
+    public static HashMap<Character, Integer> mapa(Object... pares) {
+        HashMap<Character, Integer> mapa = new HashMap<>();
+        for (int i = 0; i < pares.length; i += 2) {
+            mapa.put((Character) pares[i], (Integer) pares[i + 1]);
+        }
+        return mapa;
+    }
 
     public static synchronized void iniciar(Class<?> classe, int limiteCiclomatico,
                                              String... metodos) {
