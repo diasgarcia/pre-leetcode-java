@@ -119,7 +119,7 @@ Ao criar um novo exercício:
 - Considere o que o aluno já concluiu.
 - **Não exija conceitos que ainda não foram apresentados.**
 - Use dificuldade incremental.
-- Prepare testes que cubram casos comuns e extremos.
+- Prepare testes que cubram todas as possibilidades relevantes ao problema: array vazio, um único elemento, valores negativos, zeros, valores grandes, etc.
 - Os testes devem cobrir todas as possibilidades relevantes ao problema: array vazio, um único elemento, valores negativos, zeros, valores grandes, etc.
 - O retorno temporário (`return 0;`) deve falhar em pelo menos alguns testes — um exercício com stub que acerta tudo por coincidência está mal testado.
 - Inclua pelo menos 4 testes.
@@ -239,8 +239,14 @@ Não otimize prematuramente — foque em código claro e correto antes de pensar
 - Mantenha `// TODO: implemente sua solução` enquanto o exercício estiver pendente.
 - Inicie o `main` com `Testar.iniciar(...)` e encerre com `Testar.finalizar()`.
 - Registre cada caso com `Testar.resultado(...)`.
+- Chamadas de `resultado()` devem usar um único espaço após cada vírgula, **sem alinhamento de colunas** com espaços extras. Exemplo correto:
+  `resultado("array vazio", 0, somar(new int[]{}));`
+- Use o método auxiliar `Testar.mapa(Object... pares)` para construir `HashMap<Character, Integer>` nos testes. Exemplo:
+  `resultado("string comum", mapa('b', 1, 'a', 3, 'n', 2), contarFrequencia("banana"));`
 - Informe no Javadoc a complexidade esperada de tempo e espaço.
 - Organize os testes unitários da infraestrutura no padrão Arrange, Act e Assert (AAA).
+- O pacote {@code util} deve manter 100% de cobertura de testes.
+- Novos métodos auxiliares em {@code util} (como {@code Testar.mapa()}) podem ser criados quando necessário, **desde que acompanhados de testes unitários** que mantenham a cobertura em 100%.
 
 ---
 
@@ -311,6 +317,42 @@ Exemplos:
 - `modulo(01): cria Exercicio01 — Somar todos os elementos`
 - `modulo(01): revisao — Exercicio01 aprovado`
 - `modulo(02): cria Exercicio01 — Contar vogais`
+
+## Formatação de Pull Requests
+
+Toda PR de módulo deve seguir o template abaixo. Use `gh pr edit --body-file` (nunca `--body` inline) para evitar que o PowerShell escape crases e quebre caracteres.
+
+### Template
+
+```markdown
+## Modulo NN - Nome do modulo
+
+**Em andamento.** PR aberta para acompanhar o progresso.
+
+### Exercicios
+
+| # | Metodo | Conceito | Status | CCN | Complexidade |
+|---|---|---|---|---|---|
+| 01 | `metodo` | conceito | Aguardando implementacao | - | - |
+| 02 | ... | ... | Pendente | - | - |
+
+### Progressao
+conceito01 -> conceito02 -> ...
+
+### Etapa atual
+Implementando Exercicio NN - `metodo` (estrutura, complexidade).
+```
+
+### Regras
+
+- Use `--body-file` com um arquivo temporário, **nunca** `--body` direto no PowerShell.
+- Use ASCII puro: `->` em vez de `→`, `-` em vez de `—`.
+- Mantenha os nomes de métodos entre crases (`` ` ``).
+- Ao concluir um exercício, preencha CCN e Complexidade.
+- A coluna Status usa: `Concluido`, `Aguardando implementacao`, `Pendente`.
+- Gere o arquivo com `Set-Content -LiteralPath 'pr-body.md' -Encoding UTF8 -Value @' ... '@`.
+- Remova o arquivo temporário após o `gh pr edit`.
+- Atualize a PR a cada avanço de exercício (conclusão + criação do próximo).
 
 ## Arquivos de teoria
 
@@ -508,7 +550,7 @@ Comandos disponíveis:
 |---|---|
 | `/continuar` | Mostra o estado atual e o próximo passo |
 | `/revisar` | Fluxo completo: validar → revisar → criar próximo (se aprovado) |
-| `/validar` | Compila e executa testes, sem revisar nem avançar |
+| `/validar` | Compila, executa testes e analisa clean code (nomes, DRY, código morto, etc.) |
 | `/dica [nível]` | Fornece dica progressiva (nível 1 a 5) |
 | `/proximo` | Verifica aprovação e cria o próximo exercício |
 | `/progresso` | Exibe o estado da trilha sem alterar nada |

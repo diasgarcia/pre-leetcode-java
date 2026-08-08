@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -165,5 +166,55 @@ class TestarTest {
             indice += trecho.length();
         }
         return total;
+    }
+
+    @Test
+    void mapaComMultiplasEntradas() {
+        // Arrange
+        HashMap<Character, Integer> esperado = new HashMap<>();
+        esperado.put('b', 1);
+        esperado.put('a', 3);
+        esperado.put('n', 2);
+
+        // Act
+        HashMap<Character, Integer> obtido = Testar.mapa('b', 1, 'a', 3, 'n', 2);
+
+        // Assert
+        assertEquals(esperado, obtido);
+    }
+
+    @Test
+    void mapaComEntradaUnica() {
+        // Arrange
+        HashMap<Character, Integer> esperado = new HashMap<>();
+        esperado.put('z', 1);
+
+        // Act
+        HashMap<Character, Integer> obtido = Testar.mapa('z', 1);
+
+        // Assert
+        assertEquals(esperado, obtido);
+    }
+
+    @Test
+    void mapaVazio() {
+        // Act
+        HashMap<Character, Integer> obtido = Testar.mapa();
+
+        // Assert
+        assertTrue(obtido.isEmpty());
+    }
+
+    @Test
+    void mapaComChavesRepetidasMantemUltimoValor() {
+        // Arrange
+        HashMap<Character, Integer> esperado = new HashMap<>();
+        esperado.put('a', 2);
+
+        // Act
+        HashMap<Character, Integer> obtido = Testar.mapa('a', 1, 'a', 2);
+
+        // Assert
+        assertEquals(esperado, obtido);
     }
 }

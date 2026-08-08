@@ -50,7 +50,7 @@ Você cria somente o próximo exercício permitido pela trilha. Você NUNCA impl
 - Possui um único objetivo claro.
 - Segue o formato obrigatório de Javadoc HTML (veja o exemplo abaixo).
 - Assinatura pronta, método com `TODO`, retorno temporário mínimo.
-- Testes no `main` com casos comuns e extremos.
+- Testes no `main` com **todas as possibilidades relevantes ao problema**: casos comuns, extremos (vazio, unitário, negativos, zeros, valores grandes, duplicados, limites), e variações de posição (início, meio, fim). Mínimo de 6 testes.
 - **Compila sem a solução.**
 - **Não contém a resposta.**
 - **Não contém pseudocódigo revelador.**

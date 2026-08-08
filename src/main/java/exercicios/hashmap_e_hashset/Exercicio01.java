@@ -58,21 +58,26 @@ import java.util.HashSet;
 public class Exercicio01 {
 
     public static boolean temDuplicatas(int[] numeros) {
-        // TODO: implemente sua solução
+
+        HashSet<Integer> conjunto = new HashSet<>();
+        for (int numero : numeros) {
+            if (!conjunto.add(numero)) return true;
+        }
+
         return false;
     }
 
     public static void main(String[] args) {
         iniciar(Exercicio01.class, 5, "temDuplicatas");
 
-        resultado("array com duplicata no meio",        true,  temDuplicatas(new int[]{1, 2, 3, 1}));
-        resultado("array todos distintos",               false, temDuplicatas(new int[]{1, 2, 3, 4}));
-        resultado("array vazio",                         false, temDuplicatas(new int[]{}));
-        resultado("um unico elemento",                   false, temDuplicatas(new int[]{5}));
-        resultado("todos iguais",                        true,  temDuplicatas(new int[]{7, 7, 7}));
-        resultado("negativos com duplicata",             true,  temDuplicatas(new int[]{-1, -2, -1}));
-        resultado("numeros grandes todos distintos",     false, temDuplicatas(new int[]{1000000, 2000000}));
-        resultado("zero com duplicata",                  true,  temDuplicatas(new int[]{0, 1, 0}));
+        resultado("array com duplicata no meio", true, temDuplicatas(new int[]{1, 2, 3, 1}));
+        resultado("array todos distintos", false, temDuplicatas(new int[]{1, 2, 3, 4}));
+        resultado("array vazio", false, temDuplicatas(new int[]{}));
+        resultado("um unico elemento", false, temDuplicatas(new int[]{5}));
+        resultado("todos iguais", true, temDuplicatas(new int[]{7, 7, 7}));
+        resultado("negativos com duplicata", true, temDuplicatas(new int[]{-1, -2, -1}));
+        resultado("numeros grandes todos distintos", false, temDuplicatas(new int[]{1000000, 2000000}));
+        resultado("zero com duplicata", true, temDuplicatas(new int[]{0, 1, 0}));
 
         finalizar();
     }
